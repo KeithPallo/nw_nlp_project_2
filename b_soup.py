@@ -4,7 +4,9 @@
 import bs4 as bs
 import urllib.request
 
-source = urllib.request.urlopen('https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/?internalSource=hub%20recipe&referringContentType=Search').read()
+url1 = 'https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/'
+url2 = 'https://www.allrecipes.com/recipe/91499/general-tsaos-chicken-ii'
+source = urllib.request.urlopen('url1').read()
 
 soup = bs.BeautifulSoup(source,'lxml')
 
@@ -32,6 +34,3 @@ for div in body.find_all(class_='recipe-directions__list--item'):
 print("Next Test Section")
 
 print(test_directions)
-
-
-

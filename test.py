@@ -36,4 +36,3 @@ class Ingredients(??????????):
 
 # meat_options
 meat_options = []
-meat_options = []
