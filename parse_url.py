@@ -14,11 +14,11 @@ def main_parse(url_passed,check ="single",url_name = "test"):
     """
 
     # Read in KB's
-    file = open("CookingTechniques.json", "r")
+    file = open("kb_files/CookingTechniques.json", "r")
     cooking = json.load(file)
     cooking = set(cooking)
 
-    file = open("KitchenUtensils.json", "r")
+    file = open("kb_files/KitchenUtensils.json", "r")
     utensils = json.load(file)
     utensils = set(utensils)
 
@@ -38,8 +38,16 @@ def main_parse(url_passed,check ="single",url_name = "test"):
         # Insert cleaning for ingredients
     	# Currently using API from raw import
         ing_dict = en.parse(string)
-        output_string = str(ing_dict)
-        ingredients.append(output_string)
+
+        # Check for type of output
+        if check == "single":
+            output_string = str(ing_dict)
+            ingredients.append(output_string)
+
+        else:
+            output_string = ing_dict["name"]
+            ingredients.append(output_string)
+
 
 
 
@@ -89,14 +97,47 @@ def write_single_repcipe(url_name,ingredients,id_cooking,id_utensils):
 
 def write_testing(url_name,ingredients,id_cooking,id_utensils):
 
+    # Build Ingredients File
     ing_name = url_name + "ingredients.json"
-    with open(ing_name, 'a+') as outfile:
+
+    try:
+        with open(ing_name, 'r') as outfile:
+            prev = json.load(outfile)
+        prev.extend(ingredients)
+        ingredients = prev
+
+    except:
+        pass
+
+    with open(ing_name, 'w') as outfile:
         json.dump(ingredients, outfile)
 
+    # Build Cooking File
     cook_name = url_name + "cooking.json"
-    with open(cook_name, 'a+') as outfile:
+    try:
+        with open(cook_name, 'r') as outfile:
+            prev = json.load(outfile)
+        prev.extend(id_cooking)
+        id_cooking = prev
+
+    except:
+        pass
+
+    with open(cook_name, 'w') as outfile:
         json.dump(id_cooking, outfile)
 
+
+    # Build Utensils File
     uten_name = url_name + "utensils.json"
-    with open(uten_name, 'a+') as outfile:
+
+    try:
+        with open(uten_name, 'r') as outfile:
+            prev = json.load(outfile)
+        prev.extend(id_utensils)
+        id_utensils = prev
+
+    except:
+        pass
+
+    with open(uten_name, 'w') as outfile:
         json.dump(id_utensils, outfile)
