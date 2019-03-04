@@ -3,7 +3,7 @@ import bs4 as bs
 import requests
 
 veggie = ["https://www.allrecipes.com/recipes/87/everyday-cooking/vegetarian/"]
-health = []
+health = ["https://www.allrecipes.com/recipes/84/healthy-recipes/"]
 unheathly = []
 # To add - Custom cuisine mappings
 
@@ -40,3 +40,4 @@ def write_urls(urls,output_file):
 
 if __name__ == "__main__":
     write_urls(veggie, "json_created_files/veggie_links.json")
+    write_urls(health, "json_created_files/health_links.json")
