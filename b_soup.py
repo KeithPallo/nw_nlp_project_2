@@ -32,6 +32,3 @@ for div in body.find_all(class_='recipe-directions__list--item'):
 print("Next Test Section")
 
 print(test_directions)
-
-
-
