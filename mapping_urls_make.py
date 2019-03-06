@@ -3,7 +3,10 @@ import bs4 as bs
 import requests
 
 veggie = ["https://www.allrecipes.com/recipes/87/everyday-cooking/vegetarian/"]
-health = ["https://www.allrecipes.com/recipes/84/healthy-recipes/"]
+health = ["https://www.allrecipes.com/recipes/84/healthy-recipes/","https://www.allrecipes.com/recipes/739/healthy-recipes/diabetic/",
+          "https://www.allrecipes.com/recipes/742/healthy-recipes/low-carb/", "https://www.allrecipes.com/recipes/22485/healthy-recipes/heart-healthy-recipes/",
+          "https://www.allrecipes.com/recipes/1232/healthy-recipes/low-calorie/","https://www.allrecipes.com/recipes/1231/healthy-recipes/low-fat/",
+          "https://www.allrecipes.com/recipes/22607/healthy-recipes/weight-loss/"]
 unheathly = []
 # To add - Custom cuisine mappings
 
@@ -32,6 +35,15 @@ def write_urls(urls,output_file):
                 links.append(x)
 
         # write links to output file
+        try:
+            with open(output_file, 'r') as outfile:
+                prev = json.load(outfile)
+            prev.extend(links)
+            links = prev
+
+        except:
+            pass
+
         with open(output_file, 'w') as outfile:
             json.dump(links, outfile)
 
@@ -39,5 +51,5 @@ def write_urls(urls,output_file):
 # Standard run call
 
 if __name__ == "__main__":
-    write_urls(veggie, "json_created_files/veggie_links.json")
+    # write_urls(veggie, "json_created_files/veggie_links.json")
     write_urls(health, "json_created_files/health_links.json")
