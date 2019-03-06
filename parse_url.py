@@ -12,6 +12,7 @@ def main_parse(url_passed,check ="single",url_name = "test"):
     """
     url_passed type = string
     """
+    print(url_passed)
 
     # Read in KB's
     file = open("kb_files/CookingTechniques.json", "r")
@@ -93,6 +94,7 @@ def write_single_repcipe(url_name,ingredients,id_cooking,id_utensils):
     f.write('Ingredients: ' + ', '.join(ingredients) + '\n\n')
     f.write('Cooking Techniques: ' + ', '.join(id_cooking) + '\n\n') # This will need to change
     f.write('Utensils Used: ' + ', '.join(id_utensils) + '\n\n')
+
 
 
 def write_testing(url_name,ingredients,id_cooking,id_utensils):
