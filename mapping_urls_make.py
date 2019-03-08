@@ -3,10 +3,10 @@ import bs4 as bs
 import requests
 
 veggie = ["https://www.allrecipes.com/recipes/87/everyday-cooking/vegetarian/"]
-health = ["https://www.allrecipes.com/recipes/84/healthy-recipes/","https://www.allrecipes.com/recipes/739/healthy-recipes/diabetic/",
-          "https://www.allrecipes.com/recipes/742/healthy-recipes/low-carb/", "https://www.allrecipes.com/recipes/22485/healthy-recipes/heart-healthy-recipes/",
-          "https://www.allrecipes.com/recipes/1232/healthy-recipes/low-calorie/","https://www.allrecipes.com/recipes/1231/healthy-recipes/low-fat/",
-          "https://www.allrecipes.com/recipes/22607/healthy-recipes/weight-loss/"]
+health = ["https://www.allrecipes.com/recipes/84/healthy-recipes/","https://www.allrecipes.com/recipes/739/healthy-recipes/diabetic/"]
+          #"https://www.allrecipes.com/recipes/742/healthy-recipes/low-carb/", "https://www.allrecipes.com/recipes/22485/healthy-recipes/heart-healthy-recipes/",
+          #"https://www.allrecipes.com/recipes/1232/healthy-recipes/low-calorie/","https://www.allrecipes.com/recipes/1231/healthy-recipes/low-fat/",
+          #"https://www.allrecipes.com/recipes/22607/healthy-recipes/weight-loss/"]
 unheathly = []
 # To add - Custom cuisine mappings
 
