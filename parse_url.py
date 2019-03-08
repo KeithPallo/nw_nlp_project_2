@@ -7,6 +7,9 @@ import urllib.request
 import json
 from ingredient_parser import en
 
+# python3 -c 'import parse_url; parse_url.main_parse('https://www.allrecipes.com/recipe/228293')'
+
+
 
 def main_parse(url_passed,check ="single",url_name = "test"):
     """
@@ -39,14 +42,14 @@ def main_parse(url_passed,check ="single",url_name = "test"):
         # Insert cleaning for ingredients
     	# Currently using API from raw import
         ing_dict = en.parse(string)
-
+        # print(type(ing_dict))
         # Check for type of output
         if check == "single":
-            output_string = str(ing_dict)
+            output_string = ing_dict
             ingredients.append(output_string)
 
         else:
-            output_string = ing_dict["name"]
+            output_string = ing_dict
             ingredients.append(output_string)
 
 
@@ -80,7 +83,9 @@ def main_parse(url_passed,check ="single",url_name = "test"):
 
     # Check if single_recipe
     if check == "single":
-        write_single_repcipe(url_name,ingredients,id_cooking,id_utensils)
+        # write_single_repcipe(url_name,ingredients,id_cooking,id_utensils)
+
+        return ingredients, directions
 
     else:
         write_testing(url_name,ingredients,id_cooking,id_utensils)
@@ -143,3 +148,10 @@ def write_testing(url_name,ingredients,id_cooking,id_utensils):
 
     with open(uten_name, 'w') as outfile:
         json.dump(id_utensils, outfile)
+
+
+if __name__ == "__main__":
+
+    ingredients, directions = main_parse('https://www.allrecipes.com/recipe/228293')
+
+    print(ingredients)
