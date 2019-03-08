@@ -6,9 +6,11 @@ import urllib.request
 
 url1 = 'https://www.allrecipes.com/recipe/228293/curry-stand-chicken-tikka-masala-sauce/'
 url2 = 'https://www.allrecipes.com/recipe/91499/general-tsaos-chicken-ii'
-source = urllib.request.urlopen('url1').read()
 
-soup = bs.BeautifulSoup(source,'lxml')
+source1 = urllib.request.urlopen('url1').read()
+source2 = urllib.request.urlopen('url2').read()
+
+soup = bs.BeautifulSoup(source1,'lxml')
 
 body = soup.body
 
