@@ -1,0 +1,247 @@
+{
+  "cup": [
+    "cups",
+    "cup",
+    "c.",
+    "c"
+  ],
+  "gill": [
+    "gill",
+    "gills"
+  ],
+  "jack": [
+    "jack",
+    "jacks"
+  ],
+  "bunch": [
+    "bunch",
+    "bunches"
+  ],
+  "fluid ounce": [
+    "fl. oz.",
+    "fl oz",
+    "fl oz.",
+    "fl. oz",
+    "fluid ounce",
+    "fluid ounces"
+  ],
+  "gallon": [
+    "gal",
+    "gal.",
+    "gallon",
+    "gallons"
+  ],
+  "ounce": [
+    "oz",
+    "oz.",
+    "ounce",
+    "ounces"
+  ],
+  "pint": [
+    "pt",
+    "pt.",
+    "pint",
+    "pints"
+  ],
+  "fluid pint": [
+    "fl pt",
+    "fl. pt.",
+    "fl. pt",
+    "fl pt.",
+    "fluid pint",
+    "fluid pints"
+  ],
+  "pound": [
+    "lb",
+    "lb.",
+    "lbs",
+    "lbs.",
+    "pound",
+    "pounds",
+    "#"
+  ],
+  "quart": [
+    "qt",
+    "qt.",
+    "qts",
+    "qts.",
+    "quart",
+    "quarts"
+  ],
+  "tablespoon": [
+    "tbsp.",
+    "tbsp",
+    "T",
+    "T.",
+    "tablespoon",
+    "tablespoons",
+    "tbs.",
+    "tbs"
+  ],
+  "teaspoon": [
+    "tsp.",
+    "tsp",
+    "t",
+    "t.",
+    "teaspoon",
+    "teaspoons"
+  ],
+  "gram": [
+    "g",
+    "g.",
+    "gr",
+    "gr.",
+    "gram",
+    "grams",
+    "gramme",
+    "grammes"
+  ],
+  "kilogram": [
+    "kg",
+    "kg.",
+    "kilogram",
+    "kilograms",
+    "kilogramme",
+    "kilogrammes"
+  ],
+  "liter": [
+    "l",
+    "l.",
+    "L",
+    "L.",
+    "liter",
+    "liters",
+    "litre",
+    "litres"
+  ],
+  "deciliter": [
+    "dl",
+    "dl.",
+    "dL",
+    "dL.",
+    "deciliter",
+    "deciliters",
+    "decilitre",
+    "decilitres"
+  ],
+  "milligram": [
+    "mg",
+    "mg.",
+    "milligram",
+    "milligrams",
+    "milligramme",
+    "milligrammes"
+  ],
+  "milliliter": [
+    "ml",
+    "ml.",
+    "milliliter",
+    "milliliters",
+    "millilitre",
+    "millilitres",
+    "cc",
+    "cc.",
+    "CC",
+    "CC.",
+    "Cc",
+    "Cc.",
+    "cC",
+    "cC.",
+    "mL",
+    "mL."
+  ],
+  "millimeter": [
+    "mm",
+    "mm.",
+    "millimeter",
+    "millimeters",
+    "millimetre",
+    "millimetres"
+  ],
+  "centimeter": [
+    "cm",
+    "cm.",
+    "centimeter",
+    "centimeters",
+    "centimetre",
+    "centimetres"
+  ],
+  "meter": [
+    "m",
+    "m.",
+    "M",
+    "M.",
+    "meter",
+    "meters",
+    "metre",
+    "metres"
+  ],
+  "inch": [
+    "inch",
+    "inches"
+  ],
+  "pinch": [
+    "pinch",
+    "pinches"
+  ],
+  "dash": [
+    "dash",
+    "dashes"
+  ],
+  "touch": [
+    "touch",
+    "touches"
+  ],
+  "handful": [
+    "handful",
+    "handfuls"
+  ],
+  "stick": [
+    "stick",
+    "sticks"
+  ],
+  "clove": [
+    "cloves",
+    "clove"
+  ],
+  "can": [
+    "cans",
+    "can"
+  ],
+  "large": [
+    "lar",
+    "lar.",
+    "large"
+  ],
+  "small": [
+    "sm",
+    "sm.",
+    "small"
+  ],
+  "scoop": [
+    "sc",
+    "sc.",
+    "scoop",
+    "scoops"
+  ],
+  "fillets": [
+    "filet",
+    "filets",
+    "fillet",
+    "fillets"
+  ],
+  "sprig": [
+    "sprig",
+    "sprigs"
+  ],
+  "bit": [
+    "bit",
+    "bits"
+  ],
+  "few": [
+    "few"
+  ],
+  "some": [
+    "some"
+  ]
+}

@@ -1,3 +1,5 @@
+import re
+
 class Ingredients(??????????):
 	# ...
 	Name = ""
@@ -36,3 +38,13 @@ class Ingredients(??????????):
 
 # meat_options
 meat_options = []
+
+PARSER_RE = re.compile(
+	r'(?P<quantity>(?:[\d\.,][\d\.,\s/]*)?\s*(?:(?:%s)\s*)*)'
+	r'?'
+	r'(\s*(?P<unit>%s)\s+)'
+	r'?'
+	r'(\s*(?:%s)\s+)'
+	r'?'
+	r'(\s*(?P<name>.+))?' % (
+	'|'.join(quantity), '|'.join(b), '|'.join(PREPOSITIONS))

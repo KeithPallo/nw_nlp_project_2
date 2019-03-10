@@ -4,9 +4,8 @@
     <list default="true" id="eb767a10-e6c9-49ba-9216-116f3c27e6e9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ingredient_parser/en.py" beforeDir="false" afterPath="$PROJECT_DIR$/ingredient_parser/en.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ingredient_parser/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/ingredient_parser/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ingredients_kb_creation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ingredients_kb_creation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kb_files/CookingTechniques.json" beforeDir="false" afterPath="$PROJECT_DIR$/kb_files/CookingTechniques.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ingredients_kb.json" beforeDir="false" afterPath="$PROJECT_DIR$/ingredients_kb.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test2.py" beforeDir="false" afterPath="$PROJECT_DIR$/test2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,28 +18,30 @@
     <session id="826945401">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.3" value="2" />
-          <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.open.time.5" value="2" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="IPNB" value="2" />
-          <entry key="JSON" value="3" />
+          <entry key="IPNB" value="3" />
+          <entry key="JSON" value="10" />
           <entry key="Markdown" value="3" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="23" />
+          <entry key="Python" value="29" />
+          <entry key="RegExp" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JSON" value="8" />
-          <entry key="Python" value="2458" />
-          <entry key="RegExp" value="4" />
+          <entry key="JSON" value="569" />
+          <entry key="Python" value="6270" />
+          <entry key="RegExp" value="32" />
         </counts>
       </usages-collector>
     </session>
@@ -50,30 +51,39 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ingredient_parser/en.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="45" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="717">
+              <caret line="88" column="38" lean-forward="true" selection-start-line="88" selection-start-column="38" selection-end-line="88" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/to_health_ingredients_kb.json">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="22" column="65" lean-forward="true" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
+            <state relative-caret-position="427">
+              <caret line="44" column="62" selection-start-line="44" selection-start-column="62" selection-end-line="44" selection-end-column="62" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ingredients v1.csv">
+        <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-10077" />
+            <state relative-caret-position="-247">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_descr.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="419">
+              <caret line="30" column="66" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
+            </state>
           </provider>
         </entry>
       </file>
@@ -81,7 +91,30 @@
         <entry file="file://$PROJECT_DIR$/ingredients_kb.json">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="841" selection-start-column="834" selection-end-column="841" />
+              <caret lean-forward="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ingredients v1.csv">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/quantity_kb.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/measurements_kb.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="212">
+              <caret line="179" column="5" lean-forward="true" selection-start-line="179" selection-start-column="5" selection-end-line="179" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -90,7 +123,7 @@
         <entry file="file://$PROJECT_DIR$/ingredients_kb_creation.ipynb">
           <provider selected="true" editor-type-id="ipnb-editor">
             <state>
-              <selected id="16" />
+              <selected id="4" />
             </state>
           </provider>
         </entry>
@@ -99,7 +132,7 @@
         <entry file="file://$PROJECT_DIR$/ingredient_parser/utils.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="20" column="36" lean-forward="true" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="36" />
+              <caret line="20" column="36" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -115,29 +148,47 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>descriptor</find>
-      <find>lb</find>
-      <find>pinch</find>
-      <find>can</find>
-      <find>bunch</find>
-      <find>celery</find>
-      <find>sep</find>
-      <find>escape</find>
-      <find>st</find>
-      <find>prepositions</find>
-      <find>gill</find>
-      <find>g.</find>
-      <find>c</find>
-      <find>liter</find>
-      <find>gram</find>
-      <find>meter</find>
-      <find>M</find>
+      <find>\.</find>
+      <find>\d+</find>
+      <find>\d{4}</find>
+      <find />
+      <find>json</find>
+      <find>UNITS</find>
+      <find>measurements</find>
+      <find>data</find>
+      <find>quantity</find>
+      <find>?P</find>
+      <find>?&lt;</find>
+      <find>?:</find>
+      <find>\d</find>
+      <find>b</find>
+      <find>(0-9)</find>
+      <find>.</find>
+      <find>/s+</find>
+      <find>\s+</find>
+      <find />
+      <find>carrot</find>
       <find>inch</find>
-      <find>quart</find>
-      <find>sc</find>
       <find>chicken</find>
-      <find>chick</find>
+      <find>n/a3</find>
+      <find>''</find>
+      <find>qty</find>
+      <find>pattern</find>
+      <find>(</find>
+      <find>pie</find>
+      <find>PARSER_RE</find>
+      <find>res</find>
     </findStrings>
+    <replaceStrings>
+      <replace>?</replace>
+      <replace>[0-9]</replace>
+      <replace>(0-9)</replace>
+      <replace>\d</replace>
+      <replace>'',</replace>
+      <replace>\.</replace>
+      <replace>ingredient_string</replace>
+      <replace>reg</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -145,27 +196,47 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/b_soup.py" />
         <option value="$USER_HOME$/food.py" />
         <option value="$PROJECT_DIR$/ingredient_parser/utils.py" />
-        <option value="$PROJECT_DIR$/ingredient_parser/en.py" />
-        <option value="$PROJECT_DIR$/test2.py" />
+        <option value="$PROJECT_DIR$/ingredient_parser/regex_test_ik.py" />
         <option value="$PROJECT_DIR$/ingredients_kb.json" />
+        <option value="$PROJECT_DIR$/quantity_kb.json" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/measurements_kb.json" />
+        <option value="$PROJECT_DIR$/test_descr.py" />
+        <option value="$PROJECT_DIR$/test2.py" />
+        <option value="$PROJECT_DIR$/ingredient_parser/en.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="53" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="224" />
     <option name="y" value="23" />
-    <option name="width" value="1867" />
+    <option name="width" value="1696" />
     <option name="height" value="1177" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+          <State>
+            <id>Python</id>
+          </State>
+          <State>
+            <id>RegExp</id>
+          </State>
+        </expanded-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -173,16 +244,34 @@
               <item name="nw_nlp_project_2" type="b2602c69:ProjectViewProjectNode" />
               <item name="nw_nlp_project_2" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="nw_nlp_project_2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nw_nlp_project_2" type="462c0819:PsiDirectoryNode" />
+              <item name="ingredient_parser" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="last.edited.regexp" value="Sample Text" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.RegExp" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="nw_nlp_project_2" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="nw_nlp_project_2" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -239,7 +328,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="regex_test_ik" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="nw_nlp_project_2" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -247,11 +336,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ingredient_parser" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ingredient_parser/regex_test_ik.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -281,18 +370,41 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test_descr" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="nw_nlp_project_2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_descr.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.b_soup" />
-      <item itemvalue="Python.test" />
       <item itemvalue="Python.test2" />
       <item itemvalue="Python.food" />
+      <item itemvalue="Python.regex_test_ik" />
+      <item itemvalue="Python.test_descr" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.test2" />
+        <item itemvalue="Python.test_descr" />
+        <item itemvalue="Python.regex_test_ik" />
         <item itemvalue="Python.food" />
         <item itemvalue="Python.b_soup" />
-        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -310,19 +422,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="53" y="23" width="1867" height="1177" extended-state="0" />
+    <frame x="53" y="23" width="1867" height="1177" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24959828" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.116764866" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32911393" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.48101267" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39963832" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32911393" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32911393" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32911393" />
@@ -390,16 +502,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CookingTechniques.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/CookingTechniques.json" />
     <entry file="file://$PROJECT_DIR$/b_soup.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-          <folding>
-            <element signature="e#31#47#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -427,13 +534,6 @@
     <entry file="file://$PROJECT_DIR$/test">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="37" column="17" lean-forward="true" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.2/python_stubs/-1199943126/itertools.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -441,46 +541,105 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ingredient_parser/regex_test_ik.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parse_url.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analysis_healthy_1.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analysis_build.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/nw_nlp_project_1 11.54.04 PM/final_code.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/italian_kb.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/to_health_ingredients_kb.json">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ingredients_kb_creation.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="4" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ingredient_parser/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="20" column="36" lean-forward="true" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="36" />
+          <caret line="20" column="36" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ingredients v1.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/measurements_kb.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10077" />
+        <state relative-caret-position="212">
+          <caret line="179" column="5" lean-forward="true" selection-start-line="179" selection-start-column="5" selection-end-line="179" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quantity_kb.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ingredients_kb.json">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="841" selection-start-column="834" selection-end-column="841" />
+          <caret lean-forward="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ingredients_kb_creation.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="2" />
+    <entry file="file://$PROJECT_DIR$/test_descr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="30" column="66" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-247">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="65" lean-forward="true" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
+        <state relative-caret-position="427">
+          <caret line="44" column="62" selection-start-line="44" selection-start-column="62" selection-end-line="44" selection-end-column="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ingredient_parser/en.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        <state relative-caret-position="717">
+          <caret line="88" column="38" lean-forward="true" selection-start-line="88" selection-start-column="38" selection-end-line="88" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
