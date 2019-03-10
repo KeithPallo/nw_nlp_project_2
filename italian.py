@@ -23,6 +23,7 @@ def get_test_ingredients(og_ingredients):
 
 
 def clean_text(s):
+    stop_words = set(stopwords.words('english'))
     s = re.sub("[^a-zA-Z ]", ' ', s)
     s = s.lower()
     s = word_tokenize(s)
@@ -61,6 +62,8 @@ def get_ngrams(i_list):
 
 
 def get_italian_kb(italian, ingredients_kb):
+    ps = PorterStemmer()
+    
     italian_kb = {}
     
     italian_grams = get_ngrams(italian)
@@ -82,6 +85,8 @@ def get_italian_kb(italian, ingredients_kb):
 
 
 def transform_ingredients(test_ingredients, italian_kb, ingredients_kb):
+    ps = PorterStemmer()
+    
     transformed_ingredients = []
     og_simplified_ingredients = []
     counter = Counter()
@@ -130,10 +135,10 @@ def transform_ingredients(test_ingredients, italian_kb, ingredients_kb):
 # takes our created italian ingredients KB and list of all recipes, writes dict of italian ingredients + frequencies divided by food group to json
 def get_italian_ingredients_dict(italian_json, all_recipes):
     # import stop words
-    stop_words = set(stopwords.words('english'))
+    #stop_words = set(stopwords.words('english'))
     
     # create PorterStemmer object for stemming words
-    ps = PorterStemmer()
+    #ps = PorterStemmer()
     
     # import italian ingredients KB (dict of food categories)
     with open(italian_json) as json_file:

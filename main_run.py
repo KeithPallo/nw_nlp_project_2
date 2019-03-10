@@ -63,7 +63,7 @@ def run_interface():
     with open("veg_kb.json", 'r') as f:
         veg_kb = json.loads(f.read())
         
-    with open("italian_kb.json", 'r') as i1:
+    with open("to_italian_kb.json", 'r') as i1:
         italian_kb = json.loads(i1.read())
         
     with open("italian_freq.json", 'r') as i2:
@@ -118,9 +118,9 @@ def run_interface():
             new_ingredients, new_directions = vegetarian.undoVegetarian(t_full_ingredients,t_directions,veg_kb)
 
         if next == "5":
-            new_ingredients, og_simplified_ingredients = cuisine_to_italian_ingredients(og_ingredients, italian_freq, italian_kb)
+            new_ingredients, og_simplified_ingredients = italian.cuisine_to_italian_ingredients(og_ingredients, italian_freq, italian_kb)
             
-            new_directions = cuisine_to_italian_directions(og_simplified_ingredients, og_directions, new_ingredients)
+            new_directions = italian.cuisine_to_italian_directions(og_simplified_ingredients, og_directions, new_ingredients)
 
 
         elif next == "x":
@@ -176,7 +176,7 @@ def printPretty(old_stuff_dicts, ingredients):
 
     for index in range(0,len(old_stuff_dicts)):
 
-        full_new = old_stuff_dicts[index]['quantity'] + ' ' +  old_stuff_dicts[index]['measurement'] + ' ' + ingredients[index]
+        full_new = old_stuff_dicts[index]['quantity'] + ' ' +  old_stuff_dicts[index]['measure'] + ' ' + ingredients[index]
         new_ingredients.append(full_new)
 
     return new_ingredients
