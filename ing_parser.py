@@ -24,6 +24,7 @@ for each in measurements:
 
 ingredient_string = re.compile(
 	# Groups may have changed, but originally were:
+	# 0 = Whole string
 	# 1 = All #s quantity that's not in parentheses
 	# 2 = Whole # of Group 1
 	# 3/4 = Second whole # or full fraction
@@ -87,8 +88,6 @@ def parse(string):
 		for each in splitN:
 			if each in measurement_list:
 				m = {'measure': str(each)}
-	if 'cups' in m.values():
-		print(True)
 	if q == {'quantity': ''}:
 		q = {'quantity': 'n/a'}
 	parsed = {**q, **n, **m}

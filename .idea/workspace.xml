@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb767a10-e6c9-49ba-9216-116f3c27e6e9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ing_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/ing_parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/measurements_kb.json" beforeDir="false" afterPath="$PROJECT_DIR$/measurements_kb.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quantity_kb.json" beforeDir="false" afterPath="$PROJECT_DIR$/quantity_kb.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_for_ing_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_for_ing_parser.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +37,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="654" />
-          <entry key="Python" value="10882" />
+          <entry key="Python" value="10903" />
           <entry key="RegExp" value="32" />
         </counts>
       </usages-collector>
@@ -53,8 +48,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ing_parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="283">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -623,8 +618,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ing_parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="283">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
