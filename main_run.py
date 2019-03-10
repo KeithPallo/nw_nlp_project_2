@@ -154,6 +154,7 @@ def run_interface(dir="empty",filename="test"):
         else:
             pass
             # MARIO - whatever we need to do here
+            # don't need to do this
 
         print("Here is your new recipe! ")
         print("----------------------------------------------------------------------")
@@ -172,13 +173,15 @@ def run_interface(dir="empty",filename="test"):
             differences = find_swaps(t_unfiltered,new_ingredients)
             for different in differences: print(different)
 
-            # write differences to file for future testing
-            file = open('test.txt', "a+")
-            for difference in differences:
-                file.write('Change : ' + difference + '\n\n')
-            file.close()
         else:
-            pass
+            differences = findDifferences(og_ingredients, new_ingredients)
+            for difference in differences: print(difference)
+
+        # write differences to file for future testing
+        file = open('test.txt', "a+")
+        for difference in differences:
+            file.write('Change : ' + difference + '\n\n')
+        file.close()
 
 
         # print the new directions
