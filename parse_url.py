@@ -63,8 +63,7 @@ def main_parse(url_passed,check ="single",url_name = "test"):
     for div in body.find_all(class_='recipe-directions__list--item'):
     	if div.text != "":
             string = div.text
-            string = string.split()
-            directions.extend(string)
+            directions.append(string)
 
     # Instanciate Found
     id_cooking = []
