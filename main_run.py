@@ -25,6 +25,7 @@ from parse_url import *
 # load in module functions
 import health
 import vegetarian
+import italian
 
 # python3 -c 'import main; main.run_interface()'
 
@@ -54,13 +55,19 @@ def run_interface():
     # write original to text file
     # TO DO
 
-    # load in associated KB's - currtently only healthy
+    # load in associated KB's - currently only healthy
 
     with open("to_health_ingredients_kb.json", 'r') as infile:
         health_kb = json.load(infile)
 
     with open("veg_kb.json", 'r') as f:
         veg_kb = json.loads(f.read())
+        
+    with open("to_italian_kb.json", 'r') as i1:
+        italian_kb = json.loads(i1.read())
+        
+    with open("italian_freq.json", 'r') as i2:
+        italian_freq = json.loads(i2.read())
 
 
     while _continue:
@@ -81,6 +88,7 @@ def run_interface():
         print(" Select 2 to make the recepe unhealthy.")
         print(" Select 3 to make the recipe vegetarian.")
         print(" Select 4 to make the recipe non-vegetarian.")
+        print(" Select 5 to make the recipe Italian.")
 
         print(" Select X to quick the program. ")
 
@@ -109,7 +117,10 @@ def run_interface():
         if next == "4":
             new_ingredients, new_directions = vegetarian.undoVegetarian(t_full_ingredients,t_directions,veg_kb)
 
-
+        if next == "5":
+            new_ingredients, og_simplified_ingredients = italian.cuisine_to_italian_ingredients(og_ingredients, italian_freq, italian_kb)
+            
+            new_directions = italian.cuisine_to_italian_directions(og_simplified_ingredients, og_directions, new_ingredients)
 
 
         elif next == "x":
@@ -165,7 +176,7 @@ def printPretty(old_stuff_dicts, ingredients):
 
     for index in range(0,len(old_stuff_dicts)):
 
-        full_new = old_stuff_dicts[index]['quantity'] + ' ' +  old_stuff_dicts[index]['measurement'] + ' ' + ingredients[index]
+        full_new = old_stuff_dicts[index]['quantity'] + ' ' +  old_stuff_dicts[index]['measure'] + ' ' + ingredients[index]
         new_ingredients.append(full_new)
 
     return new_ingredients
