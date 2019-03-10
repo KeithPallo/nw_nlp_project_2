@@ -246,7 +246,7 @@ def clean_ingredients(ingredients,kb):
         # print(longest)
 
         # check to make sure it is not empty - if it is, then use the standard version
-        if not longest: longest = ingredient
+        if not longest: longest = "not_changed"
 
         clean_ingredients.append(longest)
 

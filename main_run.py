@@ -72,7 +72,8 @@ def run_interface():
 
     while _continue:
         # while user wants to continue
-
+        print('\n' * 3)
+        print(" MAIN MENU")
         print("Here is the parsed recipe: ")
         for ingredient in og_ingredients: print(ingredient)
         print("------------------------------------------------")
@@ -83,12 +84,12 @@ def run_interface():
 
 
         # display rules for selecting transform
-        print(" Please select your desired transform. These are the rules we are going to display.")
-        print(" Select 1 to make the recipe healthy.")
-        print(" Select 2 to make the recepe unhealthy.")
-        print(" Select 3 to make the recipe vegetarian.")
-        print(" Select 4 to make the recipe non-vegetarian.")
-        print(" Select 5 to make the recipe Italian.")
+
+        print("Please select your desired transform. These are the rules we are going to display.")
+        print("Select 1 to make the recipe healthy.")
+        print("Select 2 to make the recepe unhealthy.")
+        print("Select 3 to make the recipe vegetarian.")
+        print("Select 4 to make the recipe non-vegetarian.")
 
         print(" Select X to quick the program. ")
 
@@ -109,6 +110,19 @@ def run_interface():
             # select transform based on input
             cleaned_ingredients = health.clean_ingredients(t_ingredients,health_kb)
             new_ingredients = health.ing_swap_funtion(health_kb,cleaned_ingredients)
+
+            # mutate unchanged ingredients back to original
+            temp = []
+
+            for index in range(0,len(new_ingredients)):
+                ing = new_ingredients[index]
+                if ing == "not_changed":
+                    ing = unfiltered_ingredients[index]
+                temp.append(ing)
+
+            new_ingredients = temp
+
+
             # TO DO - write cleaned directions
 
         if next == "3":
@@ -117,40 +131,72 @@ def run_interface():
         if next == "4":
             new_ingredients, new_directions = vegetarian.undoVegetarian(t_full_ingredients,t_directions,veg_kb)
 
+
         if next == "5":
             new_ingredients, og_simplified_ingredients = italian.cuisine_to_italian_ingredients(og_ingredients, italian_freq, italian_kb)
             
             new_directions = italian.cuisine_to_italian_directions(og_simplified_ingredients, og_directions, new_ingredients)
-
-
+            
+            
         elif next == "x":
             print("quiting the url currently being tested")
             _continue = False
             return
 
 
-        pprint(new_ingredients)
+        # modify ingredients for display
+        if next not in ["3","4"]:
+            new_ingredients = printPretty(og_ingredients,new_ingredients,unfiltered_ingredients)
+        else:
+            pass
+            # whatever we need to do here
 
-        # modify ingredients for printing
-        # if next not in ["3","4"]:
-        new_ingredients = printPretty(og_ingredients,new_ingredients)
+        print("----------------------------------------------------------------------")
+        print("Here is your new recipe! ")
+        print("The new list of ingredients are:")
 
         # print new ingredients
         for ingredient in new_ingredients: print(ingredient)
 
+        # write changes to file for later testing
 
-        # print differences using diff_for_display
-        # TO DO - Write function
+        # show the user the changes in ingredients
+        print("----------------------------------------------------------------------")
+        print("The changes in the ingredients were: ")
 
+        if next not in ["3","4"]:
+            # print("testing")
+            differences = find_swaps(unfiltered_ingredients,new_ingredients)
+            for different in differences: print(different)
 
-        # differences = findDifferences(unfiltered_ingredients,new_ingredients)
-        # for difference in differences: print(difference)
-        # TO DO - write transform to txt file for later processing
+        else:
+            pass
+
+        # print the new directions
+
+        print( "Press enter to return to the main menu, otherwise enter x to exit")
+
+        check = input()
+
+        if check == "x":
+            break
 
 def test_internal():
     # read in list of URLS
     # call run interface with optional parameter to input parameter
     pass
+
+def find_swaps(old_ingredients,new_ingredients):
+
+    swaps = []
+
+    for index in range(0,len(old_ingredients)):
+        if old_ingredients[index] != new_ingredients[index]:
+            string = old_ingredients[index] + " - > " + new_ingredients[index]
+            swaps.append(string)
+
+    return swaps
+
 
 
 def findDifferences(old_ingredients, new_ingredients):
@@ -170,14 +216,25 @@ def findDifferences(old_ingredients, new_ingredients):
     return changes_made
 
 
-def printPretty(old_stuff_dicts, ingredients):
+def printPretty(old_stuff_dicts, ingredients,unfiltered):
 
     new_ingredients = []
 
     for index in range(0,len(old_stuff_dicts)):
 
-        full_new = old_stuff_dicts[index]['quantity'] + ' ' +  old_stuff_dicts[index]['measure'] + ' ' + ingredients[index]
-        new_ingredients.append(full_new)
+
+        new_ing = ingredients[index]
+        original = unfiltered[index]
+
+        # check if nothing swapped or substring
+        if new_ing == "not_changed" or new_ing in original:
+            new_ingredients.append(original)
+
+        else:
+            # update with new measurement
+            full_new = old_stuff_dicts[index]['measure'] + ' ' + ingredients[index]
+
+            new_ingredients.append(full_new)
 
     return new_ingredients
 
