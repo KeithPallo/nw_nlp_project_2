@@ -1,4 +1,6 @@
 
+# https://www.allrecipes.com/recipe/228293
+
 # load in standard libraries
 import numpy as np
 import pandas as pd
@@ -8,6 +10,7 @@ import re
 import string
 import copy
 import collections
+import os
 from collections import Counter
 from ingredient_parser import en
 from pprint import pprint
@@ -17,10 +20,12 @@ import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.corpus import stopwords
 from nltk.util import ngrams
-
+from parse_url import *
 
 # load in module functions
-import healthy
+import health
+import vegetarian
+import italian
 
 # python3 -c 'import main; main.run_interface()'
 
@@ -34,7 +39,7 @@ formatter = HtmlFormatter()
 
 def run_interface():
 
-    continue = True
+    _continue = True
 
     # prompt user to input a URL
     print("Please input your url.")
@@ -43,74 +48,144 @@ def run_interface():
 
     # parse url using parse_url.py
     og_ingredients, og_directions = main_parse(url,check="single")
+    unfiltered_ingredients = get_full_ingredients(url)
+
+    simple_ingredients = [ i['name'] for i in og_ingredients]
 
     # write original to text file
     # TO DO
 
-    # load in associated KB's - currtently only healthy
+    # load in associated KB's - currently only healthy
 
     with open("to_health_ingredients_kb.json", 'r') as infile:
         health_kb = json.load(infile)
 
-    while continue:
+    with open("veg_kb.json", 'r') as f:
+        veg_kb = json.loads(f.read())
+        
+    with open("italian_kb.json", 'r') as i1:
+        italian_kb = json.loads(i1.read())
+        
+    with open("italian_freq.json", 'r') as i2:
+        italian_freq = json.loads(i2.read())
+
+
+    while _continue:
         # while user wants to continue
 
+        print("Here is the parsed recipe: ")
+        for ingredient in og_ingredients: print(ingredient)
+        print("------------------------------------------------")
 
-        # display original recipe
-        pprint(og_ingredients)
-        pprint(og_directions)
+        print("Here is the original recipe: ")
+        for ingredient in unfiltered_ingredients: print(ingredient)
+        print("------------------------------------------------")
 
 
         # display rules for selecting transform
-        print("These are the rules we are going to display. Select 1 for healthy, and x to quick")
+        print(" Please select your desired transform. These are the rules we are going to display.")
+        print(" Select 1 to make the recipe healthy.")
+        print(" Select 2 to make the recepe unhealthy.")
+        print(" Select 3 to make the recipe vegetarian.")
+        print(" Select 4 to make the recipe non-vegetarian.")
+        print(" Select 5 to make the recipe Italian.")
+
+        print(" Select X to quick the program. ")
 
         # select next action
         next = input()
 
         # call transform from imported files
 
+        t_ingredients = copy.deepcopy(simple_ingredients)
+        t_full_ingredients = copy.deepcopy(og_ingredients)
+        t_directions = copy.deepcopy(og_directions)
+
         if next == '1':
 
             # create deep copy to ensure that original never get modified
-            t_ingredients = copy.deepcopy(og_ingredients)
-            t_ingredients = copy.deepcopy(og_ingredients)
+
 
             # select transform based on input
-            cleaned_ingredients = healthy.clean_ingredients(og_ingredients,health_kb)
-            new_ingredients = healthy.ing_swap_funtion(rule_dict,health_kb,cleaned_ingredients)
+            cleaned_ingredients = health.clean_ingredients(t_ingredients,health_kb)
+            new_ingredients = health.ing_swap_funtion(health_kb,cleaned_ingredients)
             # TO DO - write cleaned directions
+
+        if next == "3":
+            new_ingredients, new_directions = vegetarian.makeVegetarian(t_full_ingredients,t_directions,veg_kb)
+
+        if next == "4":
+            new_ingredients, new_directions = vegetarian.undoVegetarian(t_full_ingredients,t_directions,veg_kb)
+
+        if next == "5":
+            new_ingredients, og_simplified_ingredients = cuisine_to_italian_ingredients(og_ingredients, italian_freq, italian_kb)
+            
+            new_directions = cuisine_to_italian_directions(og_simplified_ingredients, og_directions, new_ingredients)
+
 
         elif next == "x":
             print("quiting the url currently being tested")
-            continue = False
+            _continue = False
             return
 
 
-
-        # print new recipe
         pprint(new_ingredients)
+
+        # modify ingredients for printing
+        # if next not in ["3","4"]:
+        new_ingredients = printPretty(og_ingredients,new_ingredients)
+
+        # print new ingredients
+        for ingredient in new_ingredients: print(ingredient)
 
 
         # print differences using diff_for_display
         # TO DO - Write function
 
 
+        # differences = findDifferences(unfiltered_ingredients,new_ingredients)
+        # for difference in differences: print(difference)
         # TO DO - write transform to txt file for later processing
 
 def test_internal():
-
     # read in list of URLS
-
-
     # call run interface with optional parameter to input parameter
+    pass
+
+
+def findDifferences(old_ingredients, new_ingredients):
+    changes_made = []
+    new_ing_dict = dict((k,0) for k in new_ingredients)
+
+    for old in old_ingredients:
+        if old in new_ingredients:
+            new_ing_dict[old] = 1
+        else:
+            changes_made.append(old + " -> removed")
+
+    for new in new_ingredients:
+        if new_ing_dict[new] == 0:
+            changes_made.append("added -> " + new)
+
+    return changes_made
+
+
+def printPretty(old_stuff_dicts, ingredients):
+
+    new_ingredients = []
+
+    for index in range(0,len(old_stuff_dicts)):
+
+        full_new = old_stuff_dicts[index]['quantity'] + ' ' +  old_stuff_dicts[index]['measurement'] + ' ' + ingredients[index]
+        new_ingredients.append(full_new)
+
+    return new_ingredients
 
 
 def display_standard():
     # display ingredients for the user
 
-def diff_for_display(original_list,old_list):
-    # after printing the new version - use this to display the
-
+    pass
 
 def parse_ingredients():
     pass
@@ -118,3 +193,4 @@ def parse_ingredients():
 
 if __name__ == "__main__":
     # test_interal() - change this to select a specific type of ingredient list
+    run_interface()

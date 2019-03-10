@@ -15,7 +15,9 @@ def main_parse(url_passed,check ="single",url_name = "test"):
     """
     url_passed type = string
     """
-    print(url_passed)
+
+    url_name = "test_" + str(url_passed) + ".txt"
+    # url_name += ".txt"
 
     # Read in KB's
     file = open("kb_files/CookingTechniques.json", "r")
@@ -33,6 +35,7 @@ def main_parse(url_passed,check ="single",url_name = "test"):
 
     # Make empty lists for extraction
     ingredients = []
+    full_ingredients = []
     prep = []
     directions = []
 
@@ -41,6 +44,7 @@ def main_parse(url_passed,check ="single",url_name = "test"):
         string = div.text
         # Insert cleaning for ingredients
     	# Currently using API from raw import
+
         ing_dict = en.parse(string)
         # print(type(ing_dict))
         # Check for type of output
@@ -51,8 +55,6 @@ def main_parse(url_passed,check ="single",url_name = "test"):
         else:
             output_string = ing_dict
             ingredients.append(output_string)
-
-
 
 
     for div in body.find_all(class_='prepTime__item'):
@@ -82,22 +84,48 @@ def main_parse(url_passed,check ="single",url_name = "test"):
 
     # Check if single_recipe
     if check == "single":
-        # write_single_repcipe(url_name,ingredients,id_cooking,id_utensils)
-
+        # write_single_recipe(url_name,ingredients,id_cooking,id_utensils)
         return ingredients, directions
 
     else:
         write_testing(url_name,ingredients,id_cooking,id_utensils)
 
 
+def get_full_ingredients(url_passed):
+
+    # Soupify the url
+    source = urllib.request.urlopen(url_passed).read()
+    soup = bs.BeautifulSoup(source,'lxml')
+    body = soup.body
+
+    # Make empty lists for extraction
+
+    full_ingredients = []
 
 
-def write_single_repcipe(url_name,ingredients,id_cooking,id_utensils):
+    for div in body.find_all(class_='recipe-ingred_txt added'):
+        string = div.text
+        full_ingredients.append(string)
 
-    f = open(url_name, 'a+')
-    f.write('Ingredients: ' + ', '.join(ingredients) + '\n\n')
-    f.write('Cooking Techniques: ' + ', '.join(id_cooking) + '\n\n') # This will need to change
-    f.write('Utensils Used: ' + ', '.join(id_utensils) + '\n\n')
+    return full_ingredients
+
+
+
+
+
+
+def write_single_recipe(url_name,ingredients,id_cooking,id_utensils):
+
+     with open(url_name, 'w') as f:  #
+
+        str_ingredients = str(ingredients)
+        str_id_cooking = str(id_cooking)
+        str_id_utensils = str(id_utensils)
+
+        f.write('Ingredients: ' + ', '.join(str_ingredients) + '\n\n')
+        f.write('Cooking Techniques: ' + ', '.join(str_id_cooking) + '\n\n') # This will need to change
+        f.write('Utensils Used: ' + ', '.join(str_id_utensils) + '\n\n')
+
 
 
 
@@ -149,8 +177,6 @@ def write_testing(url_name,ingredients,id_cooking,id_utensils):
         json.dump(id_utensils, outfile)
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    ingredients, directions = main_parse('https://www.allrecipes.com/recipe/228293')
-
-    print(ingredients)
+    #ingredients, directions = main_parse('https://www.allrecipes.com/recipe/228293')
