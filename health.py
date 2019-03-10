@@ -1,11 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[6]:
-
-
 # Load in necesarry libs
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -13,12 +6,9 @@ import json
 import re
 import string
 import copy
-
 import collections
 from collections import Counter
-
 from ingredient_parser import en
-
 from pprint import pprint
 
 import nltk
@@ -27,9 +17,6 @@ from nltk.corpus import stopwords
 from nltk.util import ngrams
 
 from parse_url import *
-
-
-# In[7]:
 
 
 # Write rules - two sets for healthy / unhealthy
@@ -70,12 +57,10 @@ file_rules_to_unhealthy = {'alcohol': ('nothing', []),
   'veg_nuts': ('nothing', [])}
 
 
-# In[8]:
 
-
-# Helper function for KB comparison
 
 def clean_text(s):
+    # Helper function for KB comparison
     tokens = word_tokenize(s)
     table = str.maketrans('', '', string.punctuation)
     stripped = [w.translate(table) for w in tokens]
@@ -91,12 +76,8 @@ def clean_text(s):
     return words
 
 
-# In[9]:
-
-
-# Function for comparing simple list against KB
-
 def comp_to_kb(ing_list,ingredientsKB):
+    # Function for comparing simple list against KB
     ingredients = {}
 
     for category in ingredientsKB:
@@ -112,8 +93,6 @@ def comp_to_kb(ing_list,ingredientsKB):
 
     return ingredients
 
-
-# In[10]:
 
 
 def compare_ingredients(dict_1,dict_2):
@@ -150,11 +129,6 @@ def compare_ingredients(dict_1,dict_2):
 
 
 
-
-
-# In[42]:
-
-
 def ing_swap_funtion(kb,ingredients,rules_dict = "to_health"):
 
     # assumes ingredients are preprocessed going into this function - may need to change this
@@ -170,12 +144,9 @@ def ing_swap_funtion(kb,ingredients,rules_dict = "to_health"):
 
     final = []
 
-    # pprint(rules_dict.keys())
-
     # Iterate through all potential ingredients
     for ingredient in ingredients:
-        #print(ingredient)
-        #print(final)
+
         # initialize empty category
         category = ''
 
@@ -188,10 +159,6 @@ def ing_swap_funtion(kb,ingredients,rules_dict = "to_health"):
         if category != '':
             # structured to allow different data structures for different rules
 
-            # lookup value in rules_dict
-
-            # print(category)
-            #print(rule)
             rule = rules_dict[category]
             direction = rule[0]
 
@@ -203,8 +170,6 @@ def ing_swap_funtion(kb,ingredients,rules_dict = "to_health"):
 
             elif direction == "replace_then_nothing":
                 # replace until list is empty - then, do nothing to the ingredient
-
-                # print(rule)
 
                 if rule[1]:
                     val = rules_dict[category][1].pop(0)
@@ -242,9 +207,6 @@ def ing_swap_funtion(kb,ingredients,rules_dict = "to_health"):
     return final
 
 
-# In[12]:
-
-
 def clean_ingredients(ingredients,kb):
 
     clean_ingredients = []
@@ -256,7 +218,6 @@ def clean_ingredients(ingredients,kb):
 
     # build simple kb
     for category in kb.keys():
-        #print(category)
         current = tuple(kb[category])
         simple_kb.update(current)
 
@@ -270,8 +231,6 @@ def clean_ingredients(ingredients,kb):
         # get longest version
         longest = find_longest(all_possible,simple_kb)
 
-        # print(longest)
-
         # check to make sure it is not empty - if it is, then use the standard version
         if not longest: longest = "not_changed"
 
@@ -282,14 +241,8 @@ def clean_ingredients(ingredients,kb):
     # return all cleaned spring
     clean_ingredients = [x[0] if type(x) == 'list' else x for x in clean_ingredients]
 
-
     return clean_ingredients
 
-
-
-
-
-# In[13]:
 
 
 def make_all_possible_ngrams(ingredient):
@@ -304,10 +257,6 @@ def make_all_possible_ngrams(ingredient):
             all_grams.append(" ".join(tokens[index:index_2]))
 
     return all_grams
-
-
-
-# In[14]:
 
 
 def find_longest(ingredient_list,simple_kb):
@@ -326,15 +275,12 @@ def find_longest(ingredient_list,simple_kb):
     if max_list:
         max_list = max_list[0]
 
-    #print(max_list)
     return max_list
 
 
 
 def health_directions(og_simplified_ingredients, og_directions, transformed_ingredients):
     new_directions = '@'.join(og_directions)
-
-    #print(og_directions)
 
     print(og_simplified_ingredients)
 
@@ -345,33 +291,8 @@ def health_directions(og_simplified_ingredients, og_directions, transformed_ingr
     new_directions = new_directions.split('@')
 
     return new_directions
-# In[15]:
-
 
 # import the KB - specifically for healthy ingredients
 
 with open("to_health_ingredients_kb.json", 'r') as infile:
     health_kb = json.load(infile)
-
-
-# In[18]:
-
-
-# url1 = 'https://www.allrecipes.com/recipe/228293' # Test url - currently not in use
-
-
-# In[28]:
-
-
-# ingredients, directions = main_parse(url1,check="single")
-# ingredients = [ i['name'] for i in ingredients]
-
-
-# In[43]:
-
-
-#cleaned_ingredients = clean_ingredients(ingredients,health_kb)
-# new_ingredients = ing_swap_funtion(health_kb,cleaned_ingredients)
-
-
-# In[ ]:

@@ -120,21 +120,14 @@ def run_interface(dir="empty",filename="test"):
 
 
         if next == '1':
-
-
-            # select transform based on input
             cleaned_ingredients = health.clean_ingredients(t_ingredients,health_kb)
             new_ingredients = health.ing_swap_funtion(health_kb,cleaned_ingredients)
             new_directions = health.health_directions(cleaned_ingredients, t_directions, new_ingredients)
 
-
         if next == "2":
-
-            # select transform based on input
             cleaned_ingredients = health.clean_ingredients(t_ingredients,health_kb)
             new_ingredients = health.ing_swap_funtion(health_kb,cleaned_ingredients,rules_dict = "to_unhealthy" )
             new_directions = health.health_directions(cleaned_ingredients, t_directions, new_ingredients)
-
 
         if next == "3":
             new_ingredients, new_directions = vegetarian.makeVegetarian(t_full_ingredients,t_directions,veg_kb)
@@ -142,9 +135,7 @@ def run_interface(dir="empty",filename="test"):
         if next == "4":
             new_ingredients, new_directions = vegetarian.undoVegetarian(t_full_ingredients,t_directions,veg_kb)
 
-
         if next == "5":
-
             new_ingredients, og_simplified_ingredients = italian.cuisine_to_italian_ingredients(og_ingredients, italian_freq, italian_kb)
             new_directions = italian.cuisine_to_italian_directions(og_simplified_ingredients, og_directions, new_ingredients)
 
@@ -209,12 +200,12 @@ def run_interface(dir="empty",filename="test"):
             break
 
 def test_internal():
-    # read in list of URLS
-    # call run interface with optional parameter to input parameter
+    # Allows us to test multiple different urls in a row without having to read them in or try multiple
 
     url_veg = []
     url_nonveg = []
-    url_healthy = ['https://www.allrecipes.com/recipe/257865']
+    url_healthy = ['https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669','https://www.allrecipes.com/recipe/65896'
+                    ]
     url_unhealhy = []
     url_italian = []
 
@@ -235,7 +226,10 @@ def test_internal():
         run_interface(dir=url,filename=("test_" + url))
 
 
+
+
 def find_swaps(old_ingredients,new_ingredients):
+    # Find differences between two ingredients lists that are of the same length
 
     swaps = []
 
@@ -249,6 +243,7 @@ def find_swaps(old_ingredients,new_ingredients):
 
 
 def findDifferences(old_ingredients, new_ingredients):
+    # Different version of find_swaps - currently not being used.
     changes_made = []
     new_ing_dict = dict((k,0) for k in new_ingredients)
 
@@ -275,7 +270,7 @@ def printPretty(old_stuff_dicts, ingredients,unfiltered):
         new_ing = ingredients[index]
         original = unfiltered[index]
 
-        # check if nothing swapped or substring
+        # check if nothing swapped or substring - if not, keep original
         if new_ing == "not_changed" or new_ing in original:
             new_ingredients.append(original)
 
