@@ -5,7 +5,7 @@ import os, sys
 import bs4 as bs
 import urllib.request
 import json
-from ingredient_parser import en
+import ing_parser
 
 # python3 -c 'import parse_url; parse_url.main_parse('https://www.allrecipes.com/recipe/228293')'
 
@@ -45,7 +45,7 @@ def main_parse(url_passed,check ="single",url_name = "test"):
         # Insert cleaning for ingredients
     	# Currently using API from raw import
 
-        ing_dict = en.parse(string)
+        ing_dict = ing_parser.parse(string)
         # print(type(ing_dict))
         # Check for type of output
         if check == "single":

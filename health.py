@@ -8,7 +8,8 @@ import string
 import copy
 import collections
 from collections import Counter
-from ingredient_parser import en
+# from ingredient_parser import en
+import ing_parser
 from pprint import pprint
 
 import nltk
@@ -22,7 +23,7 @@ from parse_url import *
 # Write rules - two sets for healthy / unhealthy
 
 file_rules_to_health = {'alcohol': ('nothing', []),
- 'beef': ('replace_then_non', ['low fat turkey']),
+ 'beef': ('replace_then_non', ['low fat turkey','boneless skinless chicken breast']),
  'binders': ('nothing', []),
  'carb': ('replace_then_lowcarb', ['quinoa']),
  'cheeses': ('replace_then_non', []),
@@ -31,29 +32,33 @@ file_rules_to_health = {'alcohol': ('nothing', []),
  'fats ': ('replace_then_nothing', ['extra virgin olive oil']),
  'fruits': ('nothing', []),
  'other_protein': ('nothing', []),
- 'poultry': ('replace_then_nothing', ['wildcaught salmon']),
+ 'poultry': ('replace_then_nothing', ['orgnaic boneless skinlles chicken breat']),
  'sauces': ('replace_then_non', []),
- 'seasoning': ('nothing', []),
+ 'seafood': ('replace_then_non', ['low-fat tilapia']),
+ 'seasoning': ('replace_then_nothing', ['']),
  'soups': ('nothing', []),
- 'sugars': ('replace_then_nothing', ['stevia', 'spartame', 'saccharin']),
+ 'sugars': ('replace_then_nothing', ['stevia', 'aspartame', 'saccharin']),
  'veg_nuts': ('nothing', [])}
 
 
+# CURRENTLY BEING MUTATED
+
 file_rules_to_unhealthy = {'alcohol': ('nothing', []),
-  'beef': ('replace_then_non', ['low fat turkey']),
+  'beef': ('replace_then_nothing', ['80% lean 20% fat ground beef']),
   'binders': ('nothing', []),
-  'carb': ('replace_then_lowcarb', ['quinoa']),
-  'cheeses': ('replace_then_non', []),
+  'carb': ('replace_then_nothing', ['fried rice']),
+  'cheeses': ('replace_then_nothing', []),
   'dishes': ('nothing', []),
-  'drinks': ('nothing', []),
+  'drinks': ('replace_then_nothing', ['cherry coca-cola']),
   'fats ': ('replace_then_nothing', ['extra virgin olive oil']),
   'fruits': ('nothing', []),
   'other_protein': ('nothing', []),
-  'poultry': ('replace_then_nothing', ['wildcaught salmon']),
-  'sauces': ('replace_then_non', []),
+  'poultry': ('replace_then_nothing', ['fried chicken']),
+  'sauces': ('replace_then_nothing', []),
+  'seafood': ('replace_then_nothing', ['heavily buttered lobster']),
   'seasoning': ('nothing', []),
   'soups': ('nothing', []),
-  'sugars': ('replace_then_nothing', ['stevia', 'spartame', 'saccharin']),
+  'sugars': ('replace_then_nothing', ['high fructose corn syrup']),
   'veg_nuts': ('nothing', [])}
 
 
@@ -195,6 +200,19 @@ def ing_swap_funtion(kb,ingredients,rules_dict = "to_health"):
                     final.append(val)
                 else:
                     final.append("low-carb " + ingredient)
+
+            # Unhealthy direction -------------------------------------------------
+            elif direction == "fried":
+                # make the direction fried
+                pass
+
+
+            elif direction == "replace_then_full_fat":
+                pass
+
+
+
+
 
             else:
                 print("unaccounted for case")

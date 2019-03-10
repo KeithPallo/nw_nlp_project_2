@@ -1,4 +1,5 @@
 
+# Sample test URL
 # https://www.allrecipes.com/recipe/228293
 
 # load in standard libraries
@@ -12,7 +13,8 @@ import copy
 import collections
 import os
 from collections import Counter
-from ingredient_parser import en
+# from ingredient_parser import en
+import ing_parser
 from pprint import pprint
 
 # load in nltk for
@@ -49,7 +51,7 @@ def run_interface(dir="empty",filename="test"):
 
     else:
         url = dir
-        print(" The url being used is " + url)
+        print("The url being used is " + url)
 
 
     # write url to text file
@@ -104,7 +106,7 @@ def run_interface(dir="empty",filename="test"):
         print("Select 4 to make the recipe non-vegetarian.")
         print("Select 5 to make the recipe Italian.")
 
-        print("Select X to quick the program. ")
+        print("Select X to quit the program. ")
 
         # select next action
         next = input()
@@ -211,8 +213,9 @@ def test_internal():
 
 
     # What do you want to test ?
-    print(" What do you want to test?")
-    print(" Type: veg, nonveg, healthy, unhealthy, italian?")
+    print("-------------------------------------------------")
+    print("What do you want to test?")
+    print("Type: veg, nonveg, healthy, unhealthy, italian?")
 
     command = input()
 
@@ -277,7 +280,7 @@ def printPretty(old_stuff_dicts, ingredients,unfiltered):
         # UPDATE TO BETTER IMPLEMENTATION -- use parsing from unfiltered
         else:
             # update with new measurement
-            full_new = old_stuff_dicts[index]['measure'] + ' ' + ingredients[index]
+            full_new = old_stuff_dicts[index]['quantity'] + old_stuff_dicts[index]['measurement'] + ' ' + ingredients[index]
 
             new_ingredients.append(full_new)
 
