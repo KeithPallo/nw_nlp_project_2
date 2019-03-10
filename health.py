@@ -34,7 +34,7 @@ from parse_url import *
 
 # Write rules - two sets for healthy / unhealthy
 
-file_rules = {'alcohol': ('nothing', []),
+file_rules_to_health = {'alcohol': ('nothing', []),
  'beef': ('replace_then_non', ['low fat turkey']),
  'binders': ('nothing', []),
  'carb': ('replace_then_lowcarb', ['quinoa']),
@@ -50,6 +50,24 @@ file_rules = {'alcohol': ('nothing', []),
  'soups': ('nothing', []),
  'sugars': ('replace_then_nothing', ['stevia', 'spartame', 'saccharin']),
  'veg_nuts': ('nothing', [])}
+
+
+file_rules_to_unhealthy = {'alcohol': ('nothing', []),
+  'beef': ('replace_then_non', ['low fat turkey']),
+  'binders': ('nothing', []),
+  'carb': ('replace_then_lowcarb', ['quinoa']),
+  'cheeses': ('replace_then_non', []),
+  'dishes': ('nothing', []),
+  'drinks': ('nothing', []),
+  'fats ': ('replace_then_nothing', ['extra virgin olive oil']),
+  'fruits': ('nothing', []),
+  'other_protein': ('nothing', []),
+  'poultry': ('replace_then_nothing', ['wildcaught salmon']),
+  'sauces': ('replace_then_non', []),
+  'seasoning': ('nothing', []),
+  'soups': ('nothing', []),
+  'sugars': ('replace_then_nothing', ['stevia', 'spartame', 'saccharin']),
+  'veg_nuts': ('nothing', [])}
 
 
 # In[8]:
@@ -137,9 +155,18 @@ def compare_ingredients(dict_1,dict_2):
 # In[42]:
 
 
-def ing_swap_funtion(kb,ingredients,rules_dict = file_rules):
+def ing_swap_funtion(kb,ingredients,rules_dict = "to_health"):
 
     # assumes ingredients are preprocessed going into this function - may need to change this
+
+    if rules_dict == "to_health":
+        rules_dict = file_rules_to_health
+
+    elif rules_dict =="to_unhealthy":
+        rules_dict = file_rules_to_unhealthy
+
+    else:
+        print("ERROR")
 
     final = []
 
@@ -304,7 +331,20 @@ def find_longest(ingredient_list,simple_kb):
 
 
 
+def health_directions(og_simplified_ingredients, og_directions, transformed_ingredients):
+    new_directions = '@'.join(og_directions)
 
+    #print(og_directions)
+
+    print(og_simplified_ingredients)
+
+    for i in og_simplified_ingredients:
+        if i in new_directions:
+            new_directions = new_directions.replace(i, transformed_ingredients[og_simplified_ingredients.index(i)])
+
+    new_directions = new_directions.split('@')
+
+    return new_directions
 # In[15]:
 
 
