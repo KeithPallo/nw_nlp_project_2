@@ -1,4 +1,4 @@
-from ingredient_parser.en import parse
+from ing_parser import parse
 
 print(parse('2 liters of milk'))
 print(parse('2 lbs milk'))
@@ -43,3 +43,4 @@ print(parse("6 frozen skinless, boneless chicken breast halves"))
 print(parse("1 gal. of peanuts"))
 print(parse("salt and ground black pepper to taste"))
 print(parse("1 (10.75 ounce) can condensed Cheddar cheese soup"))
+print(parse("200 cans of condensed Cheddar cheese soup"))

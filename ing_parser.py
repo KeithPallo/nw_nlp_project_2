@@ -25,45 +25,27 @@ measurement_list = []
 for each in measurements:
 	measurement_list.extend(measurements[each])
 
-
-
-
-
-# map function not working?
-# below for not working?
-print(measurement_list)
-
-# not working!?!?
-def changethings(m):
-	n = []
-	for term in m:
-		term.replace('.', '\.')
-		term.replace('(', '')
-		term.replace(')', '')
-		re.sub(r'\s+', ' ', term)
-		n.append(term)
-	return n
-measurement_list = changethings(measurement_list)
-print(measurement_list)
-
-
-
-
-
 # print(measurement_list[1])
 
 ingredient_string = re.compile(
-	# 1
-	# question mark required at end so '2' in '2 (8 ounce)' doesn't become '2 (8'
-	r'(([(0-9)\.][\d\.\s/])?'
+	# Groups:
+	# 1 = All #s quantity that's not in parentheses
+	# 2 = Whole # of Group 1
+	# 3/4 = Second whole # or denominator if only fraction
+	# 5/6 = Measurements
+	# 7/8 = n/a of Measurements
+	# 9/10 = Name
+
 	# 1, 2, 3/4
-	r'\s*((%s)\s*)*)'
+	# Note: ? required at end so '2' in '2 (8 ounce)' doesn't become '2 (8'
+	r'(([(0-9).][\d.\s])?'
+	r'(\s?(%s)\s*)*)'
 	# 5/6
-	r'(\s*(%s)\s+)?'
+	r'(\s?(%s)\s+)?'
 	# 7/8
-	r'(\s*(%s)\s+)?'
+	r'(\s?(%s)\s+)?'
 	# 9/10
-	r'(\s*(.+))?'
+	r'(\s?(.+))?'
 	% ('|'.join(qty_list), '|'.join(measurement_list), '|'.join(["of", "off", "to"])))
 
 
@@ -95,7 +77,9 @@ def parse(string):
 	# in measurement: if name has (something) at front & measurement == '', measurement = (something) without paren
 	m = {'measurement': (reg.group(5) or '').strip()}
 	parsed = {**q, **n, **m}
+
 	return parsed
-	# return {**n}
-	# return {**q}
-	# return {**m}
+
+# return {**n}
+# return {**q}
+# return {**m}
