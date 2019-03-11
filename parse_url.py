@@ -67,6 +67,9 @@ def main_parse(url_passed,check ="single",url_name = "test"):
             string = div.text
             directions.append(string)
 
+    for div in body.find_all(class_='recipe-summary__h1'):
+        dish_name = div.text
+
     # Instanciate Found
     id_cooking = []
     id_utensils = []
@@ -85,7 +88,7 @@ def main_parse(url_passed,check ="single",url_name = "test"):
     # Check if single_recipe
     if check == "single":
         # write_single_recipe(url_name,ingredients,id_cooking,id_utensils)
-        return ingredients, directions
+        return ingredients, directions, dish_name
 
     else:
         write_testing(url_name,ingredients,id_cooking,id_utensils)
