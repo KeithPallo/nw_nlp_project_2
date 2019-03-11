@@ -71,13 +71,13 @@ def main_parse(url_passed,check ="single",url_name = "test",veg = "false"):
     # Split Ingredients into Name, Quantity, Measurement
     # To do
 
-    # Extract cooking and utensils
-    for word in directions:
+#     # Extract cooking and utensils
+#     for word in directions:
 
-        if word in cooking:  # potentially remove duplicates
-            id_cooking.append(word)
-        if word in utensils: # potentially remove duplicates
-            id_utensils.append(word)
+#         if word in cooking:  # potentially remove duplicates
+#             id_cooking.append(word)
+#         if word in utensils: # potentially remove duplicates
+#             id_utensils.append(word)
 
     # Check if single_recipe
     if check == "single":

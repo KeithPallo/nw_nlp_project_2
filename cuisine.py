@@ -174,6 +174,13 @@ def to_cuisine_ingredients(og_ingredients, cuisine_kb, ingredients_kb):
 def to_cuisine_directions(og_simplified_ingredients, og_directions, transformed_ingredients):    
     new_directions = '@'.join(og_directions)
     
+#    og_grams = get_ngrams(og_ingredients)    
+#     for i in og_grams:
+#         for j in i:
+#             if j in new_directions:
+#                 new_directions = new_directions.replace(j, transformed_ingredients[og_grams.index(i)])
+#                 break
+    
     for i in og_simplified_ingredients:
         if i in new_directions:
             new_directions = new_directions.replace(i, transformed_ingredients[og_simplified_ingredients.index(i)])

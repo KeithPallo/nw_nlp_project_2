@@ -1,15 +1,13 @@
 import re
 import json
 
-<<<<<<< HEAD
+
 #with open('ingredients_kb.json') as f:
 #	ingredients = json.load(f)
-=======
 # Load in associated bd's
 
 # with open('ingredients_kb.json') as f:
 # 	ingredients = json.load(f)
->>>>>>> dc614cb507be68dc2aa758d7fd80828307d18a7a
 
 with open('quantity_kb.json') as f:
 	quantity = json.load(f)
@@ -21,13 +19,10 @@ with open('measurements_kb.json') as f:
 # for each in ingredients:
 # 	ingredients_list.extend(ingredients[each])
 
-<<<<<<< HEAD
 #ing_list = []
 #for each in ingredients:
 #	ing_list.extend(ingredients[each])
-=======
 # Make simple lists for quantity and measurement
->>>>>>> dc614cb507be68dc2aa758d7fd80828307d18a7a
 
 qty_list = []
 for each in quantity:
