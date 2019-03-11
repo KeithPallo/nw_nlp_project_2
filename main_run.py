@@ -61,15 +61,21 @@ def run_interface(dir="empty",filename="test"):
 
 
     # parse url using parse_url.py
-    og_ingredients, og_directions = main_parse(url,check="single")
+    og_ingredients, og_directions, og_name = main_parse(url,check="single")
     unfiltered_ingredients = get_full_ingredients(url)
     simple_ingredients = [ i['name'] for i in og_ingredients]
+
+
+    # parse directions for steps Tools, Methods, and Steps
 
 
 
     # load in associated KB's - currently only healthy
     with open("to_health_ingredients_kb.json", 'r') as infile:
         health_kb = json.load(infile)
+
+    with open("to_unhealth_ingredients_kb.json", 'r') as infile:
+        unhealth_kb = json.load(infile)
 
     with open("veg_kb.json", 'r') as f:
         veg_kb = json.loads(f.read())
@@ -96,6 +102,9 @@ def run_interface(dir="empty",filename="test"):
         southern_us_kb = json.loads(southern_us.read())
         
 
+    hella_recipes = pd.read_json("allrecipes-recipes.json",lines=True)
+
+
 
     # Core user interface
     while _continue:
@@ -121,6 +130,7 @@ def run_interface(dir="empty",filename="test"):
         print("Select 3 to make the recipe vegetarian.")
         print("Select 4 to make the recipe non-vegetarian.")
         print("Select 5 to make the recipe Italian.")
+<<<<<<< HEAD
         print("Select 6 to make the recipe Chinese.")
         print("Select 7 to make the recipe French.")
         print("Select 8 to make the recipe Indian.")
@@ -128,6 +138,10 @@ def run_interface(dir="empty",filename="test"):
         print("Select 10 to make the recipe Southern US.")
         
         print("Select X to quit the program. ")
+=======
+
+        print("Select x to quit the program. ")
+>>>>>>> dc614cb507be68dc2aa758d7fd80828307d18a7a
 
         # select next action
         next = input()
@@ -138,7 +152,10 @@ def run_interface(dir="empty",filename="test"):
         t_full_ingredients = copy.deepcopy(og_ingredients)
         t_directions = copy.deepcopy(og_directions)
         t_unfiltered = copy.deepcopy(unfiltered_ingredients)
-
+        
+        veg_ingredients_list = []
+        for d in t_full_ingredients:
+            veg_ingredients_list.append(d['quantity'] + ' ' + d['measurement'] + ' ' + d['name'])
         # call transform from imported files ------------------------------------------------------------------------
 
 
@@ -148,15 +165,15 @@ def run_interface(dir="empty",filename="test"):
             new_directions = health.health_directions(cleaned_ingredients, t_directions, new_ingredients)
 
         if next == "2":
-            cleaned_ingredients = health.clean_ingredients(t_ingredients,health_kb)
-            new_ingredients = health.ing_swap_funtion(health_kb,cleaned_ingredients,rules_dict = "to_unhealthy" )
+            cleaned_ingredients = health.clean_ingredients(t_ingredients,unhealth_kb)
+            new_ingredients = health.ing_swap_funtion(unhealth_kb,cleaned_ingredients,rules_dict = "to_unhealthy" )
             new_directions = health.health_directions(cleaned_ingredients, t_directions, new_ingredients)
 
         if next == "3":
-            new_ingredients, new_directions = vegetarian.makeVegetarian(t_full_ingredients,t_directions,veg_kb)
+            new_ingredients, new_directions = vegetarian.makeVegetarian(veg_ingredients_list,t_directions,veg_kb)
 
         if next == "4":
-            new_ingredients, new_directions = vegetarian.undoVegetarian(t_full_ingredients,t_directions,veg_kb)
+            new_ingredients, new_directions = vegetarian.undoVegetarian(og_name,veg_ingredients_list,t_directions,hella_recipes,veg_kb)
 
         if next == "5":
             new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(og_ingredients, italian_kb, cuisine_kb)
@@ -215,7 +232,7 @@ def run_interface(dir="empty",filename="test"):
             for different in differences: print(different)
 
         else:
-            differences = findDifferences(og_ingredients, new_ingredients)
+            differences = findDifferences(veg_ingredients_list, new_ingredients)
             for difference in differences: print(difference)
 
         # write differences to file for future testing
@@ -246,12 +263,20 @@ def run_interface(dir="empty",filename="test"):
 def test_internal():
     # Allows us to test multiple different urls in a row without having to read them in or try multiple
 
+<<<<<<< HEAD
     url_veg = []
     url_nonveg = []
     url_healthy = ['https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669','https://www.allrecipes.com/recipe/65896'
                     ]
     url_unhealhy = []
     url_italian = ['https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669','https://www.allrecipes.com/recipe/65896']
+=======
+    url_veg = ['https://www.allrecipes.com/recipe/65896','https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669']
+    url_nonveg = ['https://www.allrecipes.com/recipe/86297', 'https://www.allrecipes.com/recipe/232908', 'https://www.allrecipes.com/recipe/232908', 'https://www.allrecipes.com/recipe/60598','https://www.allrecipes.com/recipe/228241','https://www.allrecipes.com/recipe/73139']
+    url_healthy = ['https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669','https://www.allrecipes.com/recipe/65896']
+    url_unhealhy = ['https://www.allrecipes.com/recipe/72381','https://www.allrecipes.com/recipe/8665','https://www.allrecipes.com/recipe/216688', 'https://www.allrecipes.com/recipe/51997']
+    url_italian = []
+>>>>>>> dc614cb507be68dc2aa758d7fd80828307d18a7a
 
 
     # What do you want to test ?
@@ -264,7 +289,7 @@ def test_internal():
     if command == "veg": target = url_veg
     if command == "nonveg": target = url_nonveg
     if command == "healthy": target = url_healthy
-    if command == "unhealthy": target = url_unhealthy
+    if command == "unhealthy": target = url_unhealhy
     if command == "italian": target = url_italian
 
     for url in target:
@@ -316,13 +341,13 @@ def printPretty(old_stuff_dicts, ingredients,unfiltered):
         original = unfiltered[index]
 
         # check if nothing swapped or substring - if not, keep original
-        if new_ing == "not_changed" or new_ing in original:
+        if new_ing == "not_changed" or new_ing in original.lower():
             new_ingredients.append(original)
 
         # UPDATE TO BETTER IMPLEMENTATION -- use parsing from unfiltered
         else:
             # update with new measurement
-            full_new = old_stuff_dicts[index]['quantity'] + old_stuff_dicts[index]['measurement'] + ' ' + ingredients[index]
+            full_new = old_stuff_dicts[index]['quantity'] + ' ' + old_stuff_dicts[index]['measure'] + ' ' + ingredients[index]
 
             new_ingredients.append(full_new)
 
@@ -331,5 +356,5 @@ def printPretty(old_stuff_dicts, ingredients,unfiltered):
 
 
 if __name__ == "__main__":
-    test_internal()
-    # run_interface()
+    # test_internal()
+    run_interface()
