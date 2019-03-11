@@ -6,6 +6,11 @@ import bs4 as bs
 import urllib.request
 import json
 import ing_parser
+from pprint import pprint
+
+# load in nltk for
+import nltk
+from nltk.tokenize import sent_tokenize, word_tokenize
 
 # python3 -c 'import parse_url; parse_url.main_parse('https://www.allrecipes.com/recipe/228293')'
 
@@ -17,16 +22,6 @@ def main_parse(url_passed,check ="single",url_name = "test"):
     """
 
     url_name = "test_" + str(url_passed) + ".txt"
-    # url_name += ".txt"
-
-    # Read in KB's
-    file = open("kb_files/CookingTechniques.json", "r")
-    cooking = json.load(file)
-    cooking = set(cooking)
-
-    file = open("kb_files/KitchenUtensils.json", "r")
-    utensils = json.load(file)
-    utensils = set(utensils)
 
     # Soupify the url
     source = urllib.request.urlopen(url_passed).read()
@@ -42,11 +37,10 @@ def main_parse(url_passed,check ="single",url_name = "test"):
 
     for div in body.find_all(class_='recipe-ingred_txt added'):
         string = div.text
-        # Insert cleaning for ingredients
-    	# Currently using API from raw import
 
+        # Clean the string with import
         ing_dict = ing_parser.parse(string)
-        # print(type(ing_dict))
+
         # Check for type of output
         if check == "single":
             output_string = ing_dict
@@ -67,20 +61,6 @@ def main_parse(url_passed,check ="single",url_name = "test"):
             string = div.text
             directions.append(string)
 
-    # Instanciate Found
-    id_cooking = []
-    id_utensils = []
-
-    # Split Ingredients into Name, Quantity, Measurement
-    # To do
-
-    # Extract cooking and utensils
-    for word in directions:
-
-        if word in cooking:  # potentially remove duplicates
-            id_cooking.append(word)
-        if word in utensils: # potentially remove duplicates
-            id_utensils.append(word)
 
     # Check if single_recipe
     if check == "single":
@@ -89,6 +69,68 @@ def main_parse(url_passed,check ="single",url_name = "test"):
 
     else:
         write_testing(url_name,ingredients,id_cooking,id_utensils)
+
+
+
+
+
+def parse_directions(url_passed):
+
+
+    directions = []
+
+    url_name = "test_" + str(url_passed) + ".txt"
+
+    # Read in KB's
+    file = open("kb_files/CookingTechniques.json", "r")
+    methods = json.load(file)
+    methods= set(methods)
+    file.close()
+
+    file = open("kb_files/KitchenUtensils.json", "r")
+    tools = json.load(file)
+    tools = set(tools)
+    file.close()
+
+
+    url_name = "test_" + str(url_passed) + ".txt"
+
+    # Soupify the url
+    source = urllib.request.urlopen(url_passed).read()
+    soup = bs.BeautifulSoup(source,'lxml')
+    body = soup.body
+
+    # Get the directions
+    for div in body.find_all(class_='recipe-directions__list--item'):
+    	if div.text != "":
+            string = div.text
+            directions.append(string)
+
+    # Instanciate lists for Tools (cooking) and Methods (utensils )
+    id_methods = []
+    id_tools = []
+
+
+    # Split ingredients into words for testing
+
+    split_directions = [words for segments in directions for words in segments.split()]
+
+    # Extract cooking and utensils
+    for word in split_directions:
+        #print(word)
+
+        if word in methods:  # potentially remove duplicates
+            id_methods.append(word)
+        if word in tools: # potentially remove duplicates
+            id_tools.append(word)
+
+
+    id_methods = list(set(id_methods))
+    id_tools = list(set(id_tools))
+
+    return id_methods, id_tools
+
+
 
 
 def get_full_ingredients(url_passed):
@@ -177,6 +219,14 @@ def write_testing(url_name,ingredients,id_cooking,id_utensils):
         json.dump(id_utensils, outfile)
 
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
+
+    methods, tools = parse_directions('https://www.allrecipes.com/recipe/228293')
+
+    print("The tools used are:")
+    pprint(tools)
+
+    print("The methods used are:")
+    pprint(methods)
 
     #ingredients, directions = main_parse('https://www.allrecipes.com/recipe/228293')
