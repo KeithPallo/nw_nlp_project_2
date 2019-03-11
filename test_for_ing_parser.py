@@ -5,6 +5,7 @@ from pprint import pprint
 # import nltk
 # from nltk import *
 
+
 print(parse('2 liters of milk'))
 print(parse('2 lbs milk'))
 print(parse('1 lbs milk'))
@@ -20,8 +21,8 @@ print("")
 print(parse("4 teaspoons of Keith"))
 print("")
 print("")
-print(parse("2 (8 ounce) packages cream cheese, softened"))
-print(parse("2 8 ounce packages cream cheese, softened"))
+print(parse("2 (8 ounce) packaged cream cheese, softened"))
+print(parse("2 8 ounce packaged cream cheese, softened"))
 print(parse("1 1/2 cups shredded Cheddar cheese"))
 print(parse("1 cups shredded Cheddar cheese"))
 
@@ -57,20 +58,21 @@ print(parse("2 1/2 gallons of peanuts"))
 print(parse("2 5 gallons of peanuts"))
 print(parse("2 (9 inch) unbaked pie crusts"))
 print(parse("6 slices ham"))
+print(parse('2 liters of fried milk'))
+print(parse('2 liters of deep fried milk'))
 
 
 
-
-# s1 = '2 liters of milk'
-# s2 = '2 lbs milk'
-# s3 = '1 lbs milk'
-# s4 = '1 lb milk'
-# s5 = '1 pound milk'
-# s6 = '1 # milk'
-# s7 = '1 t milk.'
-# s8 = '1 T milk.'
-# s9 = 'thirteen T milk'
-# s10 = "1 bunch celery, cleaned and cut into 4 inch pieces"
+# s1 = 'unbaked'
+# s2 = 'separated'
+# s3 = 'separate'
+# s4 = 'rolled'
+# s5 = 'soaked'
+# s6 = 'sweat'
+# s7 = 'sweated'
+# s8 = 'toasted'
+# s9 = 'roast'
+# s10 = 'roasted'
 # s11 = "4 teaspoons of Keith"
 # s12 = "2 (8 ounce) packaged cream cheese, softened"
 # s13 = "2 8 ounce packaged cream cheese, softened"
@@ -114,19 +116,12 @@ print(parse("6 slices ham"))
 # 		  s25, s26, s27, s28, s29, s30, s31, s32, s33,
 # 		  s34, s35, s36, s37, s38, s39, s40))
 #
-# for each in s0:
-# 	t = word_tokenize(each)
-# 	x = nltk.pos_tag(t)
-# 	# print(s0)
-# 	# print(t)
-# 	# print(x)
-# 	for each in x:
-# 		if 'VB' in each[1]:
-# 			print(each[0])
-#
-# with open('quantity_kb.json') as f:
-# 	quantity = json.load(f)
-# print(quantity)
-#
-# if 'thirty' in quantity.values():
-# 	print(True)
+# # for each in s0:
+# print(s40)
+# t = word_tokenize(s40)
+# x = nltk.pos_tag(t)
+# # print(t)
+# # print(x)
+# for each in x:
+# 	if 'VB' in each[1]:
+# 		print(each[0])

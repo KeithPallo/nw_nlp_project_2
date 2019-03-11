@@ -340,13 +340,13 @@ def write_testing(url_name,ingredients,id_cooking,id_utensils):
 
 
 if __name__ == "__main__":
+    pass
+    # methods, tools = parse_directions('https://www.allrecipes.com/recipe/228293')
 
-    methods, tools = parse_directions('https://www.allrecipes.com/recipe/228293')
+    # print("The tools used are:")
+    # pprint(tools)
 
-    print("The tools used are:")
-    pprint(tools)
-
-    print("The methods used are:")
-    pprint(methods)
+    # print("The methods used are:")
+    # pprint(methods)
 
     #ingredients, directions = main_parse('https://www.allrecipes.com/recipe/228293')
