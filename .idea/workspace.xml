@@ -2,7 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb767a10-e6c9-49ba-9216-116f3c27e6e9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Untitled.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_build.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_healthy_1.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/b_soup.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ing_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/ing_parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ingredients v1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ingredients_kb_creation.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kb_json_make.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_run.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mapping_urls_make.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/measurements_kb.json" beforeDir="false" afterPath="$PROJECT_DIR$/measurements_kb.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simple_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_for_ing_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_for_ing_parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/to_health_ingredients_kb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,17 +43,17 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="IPNB" value="4" />
-          <entry key="JSON" value="11" />
+          <entry key="JSON" value="12" />
           <entry key="Markdown" value="3" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="34" />
+          <entry key="Python" value="36" />
           <entry key="RegExp" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JSON" value="654" />
-          <entry key="Python" value="10903" />
+          <entry key="JSON" value="3349" />
+          <entry key="Python" value="14763" />
           <entry key="RegExp" value="32" />
         </counts>
       </usages-collector>
@@ -48,8 +64,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ing_parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="393">
+              <caret line="174" lean-forward="true" selection-start-line="174" selection-end-line="174" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -60,8 +76,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_for_ing_parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+            <state relative-caret-position="368">
+              <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -69,7 +88,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
+            <state relative-caret-position="486">
               <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
             </state>
           </provider>
@@ -78,7 +97,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_descr.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
+            <state relative-caret-position="540">
               <caret line="30" column="66" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
             </state>
           </provider>
@@ -87,51 +106,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ingredients_kb.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-540" />
+            <state>
+              <caret lean-forward="true" />
+            </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/quantity_kb.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
+            <state relative-caret-position="576">
               <caret line="146" column="17" lean-forward="true" selection-start-line="146" selection-start-column="17" selection-end-line="146" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/measurements_kb.json">
+        <entry file="file://$PROJECT_DIR$/preparations_kb.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="253" column="10" selection-start-line="253" selection-start-column="10" selection-end-line="253" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ingredients_kb_creation.ipynb">
-          <provider selected="true" editor-type-id="ipnb-editor">
-            <state>
-              <selected id="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/analysis_healthy_1.ipynb">
-          <provider selected="true" editor-type-id="ipnb-editor">
-            <state>
-              <selected id="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/train.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14452">
-              <caret line="666920" column="1" lean-forward="true" selection-start-line="666920" selection-start-column="1" selection-end-line="666920" selection-end-column="1" />
+            <state relative-caret-position="54">
+              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -147,36 +141,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>b</find>
-      <find>(0-9)</find>
-      <find>.</find>
-      <find>/s+</find>
-      <find>\s+</find>
-      <find>carrot</find>
-      <find>inch</find>
-      <find>chicken</find>
-      <find>n/a3</find>
-      <find>qty</find>
-      <find>pattern</find>
-      <find>(</find>
-      <find>pie</find>
-      <find>PARSER_RE</find>
-      <find>res</find>
-      <find>can</find>
-      <find>q</find>
-      <find>peanut</find>
-      <find>to taste</find>
-      <find>salt</find>
-      <find>spl</find>
-      <find>split</find>
-      <find>splitN</find>
-      <find>ing_list</find>
       <find>n/a</find>
       <find>''</find>
       <find>None</find>
       <find>print(parse(</find>
       <find>rint(parse</find>
+      <find>slice</find>
+      <find>.lower()</find>
+      <find>'measure'</find>
+      <find>module</find>
+      <find>measurement</find>
+      <find>'measurement'</find>
+      <find>beat</find>
+      <find>brown</find>
+      <find>cut</find>
+      <find>mix</find>
+      <find>broil</find>
+      <find>deep-fry</find>
+      <find>saute</find>
+      <find>sous-vide</find>
+      <find>rub</find>
+      <find>pickle</find>
+      <find>ed&quot;</find>
+      <find>pan-broil</find>
+      <find>cube</find>
+      <find>fried</find>
+      <find>'preparations'</find>
+      <find>bake</find>
       <find>packages</find>
+      <find>each</find>
+      <find>n =</find>
     </findStrings>
     <replaceStrings>
       <replace>?</replace>
@@ -190,6 +184,10 @@
       <replace>splitQ</replace>
       <replace>ingredients_list</replace>
       <replace>s =</replace>
+      <replace>'measurement'</replace>
+      <replace>'preparation'</replace>
+      <replace>'measure'</replace>
+      <replace>packaged</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -209,15 +207,16 @@
         <option value="$PROJECT_DIR$/quantity_kb.json" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/measurements_kb.json" />
+        <option value="$PROJECT_DIR$/preparations_kb.json" />
         <option value="$PROJECT_DIR$/test_for_ing_parser.py" />
         <option value="$PROJECT_DIR$/ing_parser.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="53" />
+    <option name="x" value="1043" />
     <option name="y" value="23" />
-    <option name="width" value="1867" />
+    <option name="width" value="877" />
     <option name="height" value="1177" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -421,10 +420,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="53" y="23" width="1867" height="1177" extended-state="0" />
+    <frame x="1043" y="23" width="877" height="1177" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.116764866" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.24857469" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -548,53 +547,6 @@
     <entry file="file://$PROJECT_DIR$/ingredients v1.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_descr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="30" column="66" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.2/python_stubs/-1199943126/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="488" column="4" selection-start-line="488" selection-start-column="4" selection-end-line="488" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quantity_kb.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="146" column="17" lean-forward="true" selection-start-line="146" selection-start-column="17" selection-end-line="146" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/measurements_kb.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="253" column="10" selection-start-line="253" selection-start-column="10" selection-end-line="253" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ingredients_kb.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-540" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ingredients_kb_creation.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/analysis_healthy_1.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
@@ -609,17 +561,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ingredients_kb_creation.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_descr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="30" column="66" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ingredients_kb.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/measurements_kb.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quantity_kb.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="146" column="17" lean-forward="true" selection-start-line="146" selection-start-column="17" selection-end-line="146" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.2/python_stubs/-1199943126/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6665">
+          <caret line="4978" column="8" selection-start-line="4978" selection-start-column="8" selection-end-line="4978" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preparations_kb.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test_for_ing_parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        <state relative-caret-position="368">
+          <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ing_parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="393">
+          <caret line="174" lean-forward="true" selection-start-line="174" selection-end-line="174" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>

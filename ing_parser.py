@@ -1,5 +1,7 @@
 import re
 import json
+import nltk
+from nltk import *
 
 # with open('ingredients_kb.json') as f:
 # 	ingredients = json.load(f)
@@ -9,6 +11,9 @@ with open('quantity_kb.json') as f:
 
 with open('measurements_kb.json') as f:
 	measurements = json.load(f)
+
+with open('preparations_kb.json') as f:
+	preparations = json.load(f)
 
 # ingredients_list = []
 # for each in ingredients:
@@ -21,6 +26,10 @@ for each in quantity:
 measurement_list = []
 for each in measurements:
 	measurement_list.extend(measurements[each])
+
+preparations_list = []
+for each in preparations:
+	preparations_list.extend(preparations[each])
 
 ingredient_string = re.compile(
 	# Groups may have changed, but originally were:
@@ -44,7 +53,7 @@ ingredient_string = re.compile(
 	r'(\s?(.+))?'
 	% ('|'.join(qty_list),
 	   '|'.join(measurement_list),
-	   '|'.join(["of", "off"])))
+	   '|'.join(["of", "off", "to"])))
 
 
 def parse(string):
@@ -52,12 +61,24 @@ def parse(string):
 
 	n = {'name': (reg.group(9) or '').strip().lower()}
 	q = {'quantity': (reg.group(1) or '').strip().lower()}
-	m = {'measure': (reg.group(6) or '').strip()}
+	m = {'measurement': (reg.group(6) or '').strip()}
+	p = {'preparation': ''}
 
 	# yet to do:
 	# if in name: if phrase in ingredients_list, return it, else return the whole name
-	# if in name: parse preparation as verb phrase
+	# if in name: parse preparation as verb phrase AND then use preparation KB
 	# if in name: parse descriptors as all else
+
+	# create bigrams from name
+	splitNcopy = reg.group(9).split()
+	spliteach = []
+	for each in splitNcopy:
+		each = each.replace(',', '')
+		each = each.replace('(', '')
+		each = each.replace(')', '')
+		spliteach.append(each)
+		bgrams = []
+		bgrams += list(nltk.bigrams(spliteach))
 
 	# looks for parentheses in name
 	if '(' in reg.group(9) and ')' in reg.group(9):
@@ -67,8 +88,73 @@ def parse(string):
 		for each in split2:
 			if each in measurement_list:
 				remove_mes_from_name = reg.group(9).replace(mesPar[0], '')
+				remove_mes_from_name = remove_mes_from_name.replace('  ', ' ')
 				n = {'name': (remove_mes_from_name or '').strip().lower()}
-				m = {'measure': (split2[0] + ' ' + split2[-1] or '').strip().lower()}
+
+				m = {'measurement': (split2[0] + ' ' + split2[-1] or '').strip()}
+
+	# substitute preparation methods out of name
+	for each in bgrams:
+		st = each[0] + ' ' + each[1]
+		if st in preparations_list:
+			remove_prep_from_name = reg.group(9).replace(st, '')
+			remove_prep_from_name = remove_prep_from_name.replace('  ', ' ')
+			n = {'name': (remove_prep_from_name or '').strip().lower()}
+			p = {'preparation': st}
+			if '(' in reg.group(9) and ')' in reg.group(9):
+				mesPar = re.findall(r'(\(.*?\))', reg.group(9))
+				mesWO = mesPar[0][1:-1]
+				split2 = mesWO.split()
+				for each in split2:
+					if each in measurement_list:
+						remove_mes_from_name = remove_prep_from_name.replace(mesPar[0], '')
+						remove_prep_from_name = remove_prep_from_name.replace('  ', ' ')
+						n = {'name': (remove_mes_from_name or '').strip().lower()}
+						m = {'measurement': (split2[0] + ' ' + split2[-1] or '').strip()}
+
+		# if engram was enough to make the substitution
+		if each[0] in preparations_list:
+			remove_prep_from_name2 = reg.group(9).replace(each[0], '')
+			remove_prep_from_name2 = remove_prep_from_name2.replace('  ', ' ')
+			n = {'name': (remove_prep_from_name2 or '').strip().lower()}
+			p = {'preparation': each[0]}
+			if '(' in reg.group(9) and ')' in reg.group(9):
+				mesPar = re.findall(r'(\(.*?\))', reg.group(9))
+				mesWO = mesPar[0][1:-1]
+				split2 = mesWO.split()
+				for each in split2:
+					if each in measurement_list:
+						remove_mes_from_name2 = remove_prep_from_name2.replace(mesPar[0], '')
+						remove_prep_from_name2 = remove_prep_from_name2.replace('  ', ' ')
+						n = {'name': (remove_mes_from_name2 or '').strip().lower()}
+						m = {'measurement': (split2[0] + ' ' + split2[-1] or '').strip()}
+
+	# check empty prep for verb phrase
+	if p['preparation'] == '':
+		t = word_tokenize(reg.group(9))
+		x = nltk.pos_tag(t)
+		for each in x:
+			if 'VB' in each[1]:
+				remove_prep_from_name2 = reg.group(9).replace(each[0], '')
+				remove_prep_from_name2 = remove_prep_from_name2.replace('  ', ' ')
+				n = {'name': (remove_prep_from_name2 or '').strip().lower()}
+				p = {'preparation': each[0]}
+				if '(' in reg.group(9) and ')' in reg.group(9):
+					mesPar = re.findall(r'(\(.*?\))', reg.group(9))
+					mesWO = mesPar[0][1:-1]
+					split2 = mesWO.split()
+					for each in split2:
+						if each in measurement_list:
+							remove_mes_from_name2 = remove_prep_from_name2.replace(mesPar[0], '')
+							remove_prep_from_name2 = remove_prep_from_name2.replace('  ', ' ')
+							n = {'name': (remove_mes_from_name2 or '').strip().lower()}
+							m = {'measurement': (split2[0] + ' ' + split2[-1] or '').strip()}
+
+
+	# for each in splitN:
+	# 	if each in preparations_list:
+	# 		print(each)
+	# 		p = {'preparation': each}
 
 	# if second # in quantity is a whole #, add it to measurement
 	if reg.group(1) != '':
@@ -76,20 +162,27 @@ def parse(string):
 		if splitQ[-1] == '':
 			splitQ = splitQ[0:-1]
 		if splitQ[0] == splitQ[-1]:
-			q = {'quantity': (reg.group(1) or '').strip().lower()}
+			q = {'quantity': (reg.group(1) or '').strip().title()}
 		else:
 			if '/' in str(splitQ[-1]):
-				q = {'quantity': (reg.group(1) or '').strip().lower()}
+				q = {'quantity': (reg.group(1) or '').strip().title()}
 			else:
-				q = {'quantity': (splitQ[0] or '').strip().lower()}
-				m = {'measure': (splitQ[-1] + ' ' + str(reg.group(6)) or '').strip()}
-	if m == {'measure': ''} or 'None' in m['measure'] and r'\d' not in m['measure']:
+				q = {'quantity': (splitQ[0] or '').strip().title()}
+				m = {'measurement': (splitQ[-1] + ' ' + str(reg.group(6)) or '').strip()}
+
+	if p['preparation'] == '':
+		p['preparation'] = 'n/a'
+
+	if 'to' in n['name']:
+		n['name'] = n['name'].replace('to', '').strip()
+
+	if m == {'measurement': ''} or 'None' in m['measurement'] and r'\d' not in m['measurement']:
 		splitN = reg.group(9).split()
 		for each in splitN:
 			if each in measurement_list:
-				m = {'measure': str(each)}
+				m = {'measurement': str(each)}
 	if q == {'quantity': ''}:
 		q = {'quantity': 'n/a'}
-	parsed = {**q, **n, **m}
+	parsed = {**q, **n, **m, **p}
 
 	return parsed

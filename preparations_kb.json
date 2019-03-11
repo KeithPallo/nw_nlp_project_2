@@ -1,0 +1,287 @@
+{
+  "bake": [
+    "baked",
+    "unbaked"
+  ],
+  "shir": [
+    "shirring",
+    "shirred"
+  ],
+  "boil": [
+    "boiled",
+    "boiling"
+  ],
+  "cockaigne": [
+    "cockaigne",
+    "cockaigned"
+  ],
+  "saute": [
+    "sauted",
+    "sautéd",
+    "sautéing"
+  ],
+  "grill": [
+    "grilling",
+    "grilled"
+  ],
+  "glaze": [
+    "glazed",
+    "glazing"
+  ],
+  "deglaze": [
+    "deglazing",
+    "deglazed"
+  ],
+  "deep-fry": [
+    "deep fried",
+    "deep-fried",
+    "deepfried"
+  ],
+  "stir-fry": [
+    "stir fried",
+    "stir-fried",
+    "stirfried"
+  ],
+  "pan-fry": [
+    "pan fried",
+    "pan-fried",
+    "panfried"
+  ],
+  "roast": [
+    "roasted",
+    "roasting"
+  ],
+  "bain-marie": [
+    "bain-maried",
+    "bain maried"
+  ],
+  "baste": [
+    "basting",
+    "basted"
+  ],
+  "sous-vide": [
+    "sous-vide",
+    "sous vide",
+    "sous-vided",
+    "sous vided"
+  ],
+  "julienne": [
+    "julienned",
+    "julienning"
+  ],
+  "mince": [
+    "minced",
+    "mincing"
+  ],
+  "slice": [
+    "sliced",
+    "slicing"
+  ],
+  "melt": [
+    "melted"
+  ],
+  "cream": [
+    "creamed"
+  ],
+  "batter": [
+    "battered",
+    "batter"
+  ],
+  "dice": [
+    "dice",
+    "diced"
+  ],
+  "fold": [
+    "fold",
+    "folded"
+  ],
+  "knead": [
+    "knead",
+    "kneaded"
+  ],
+  "microwave": [
+    "microwaved"
+  ],
+  "broil": [
+    "broil",
+    "broiled",
+    "broiling"
+  ],
+  "parboil": [
+    "parboil",
+    "parboiled",
+    "par boil",
+    "par boiled"
+  ],
+  "roll": [
+    "roll",
+    "rolled",
+    "rolling"
+  ],
+  "soak": [
+    "soak",
+    "soaked"
+  ],
+  "bbq": [
+    "BBQ",
+    "bbq",
+    "bbqed",
+    "bbqd",
+    "bbq'd",
+    "barbecued",
+    "barbequed"
+  ],
+  "rub": [
+    "rubbed",
+    "rubbing"
+  ],
+  "pickle": [
+    "pickled"
+  ],
+  "chop": [
+    "chopped"
+  ],
+  "cube": [
+    "cubed"
+  ],
+  "al dente": [
+    "al dente",
+    "al dented"
+  ],
+  "beat": [
+    "beaten"
+  ],
+  "brown": [
+    "brown",
+    "browned"
+  ],
+  "cut": [
+    "cut",
+    "cutting"
+  ],
+  "mix": [
+    "mixed"
+  ],
+  "pan-broil": [
+    "pan-broiled",
+    "pan broiled"
+  ],
+  "puree": [
+    "purée",
+    "pureé",
+    "puree",
+    "pureed",
+    "puréed",
+    "pureéd"
+  ],
+  "separate": [
+    "separate"
+  ],
+  "sweat": [
+    "sweat"
+  ],
+  "toast": [
+    "toast"
+  ],
+  "blanch": [
+    "blanche",
+    "blanch",
+    "blanching",
+    "blanched"
+  ],
+  "poach": [
+    "poached",
+    "poach"
+  ],
+  "pressure_cooking": [
+    "pressure cook",
+    "pressure cooked",
+    "pressure cooking"
+  ],
+  "scald": [
+    "scald",
+    "scalded",
+    "scalding"
+  ],
+  "simmer": [
+    "simmer",
+    "simmered"
+  ],
+  "steam": [
+    "steam",
+    "steamed"
+  ],
+  "stew": [
+    "stewed"
+  ],
+  "temper": [
+    "temper",
+    "tempered"
+  ],
+  "carmelize": [
+    "carmelizing",
+    "carmelized",
+    "carmelize"
+  ],
+  "smoke": [
+    "smoked"
+  ],
+  "brine": [
+    "brined",
+    "brining"
+  ],
+  "dredge": [
+    "dredge",
+    "dredged"
+  ],
+  "marinate": [
+    "marinate",
+    "marinated",
+    "marinating"
+  ],
+  "ferment": [
+    "fermented",
+    "ferment"
+  ],
+  "pick": [
+    "picked"
+  ],
+  "package": [
+    "packaged"
+  ],
+  "can": [
+    "canned"
+  ],
+  "dry": [
+    "dried"
+  ],
+  "age": [
+    "aged"
+  ],
+  "bone": [
+    "boned"
+  ],
+  "chiffon": [
+    "chiffonade"
+  ],
+  "degorge": [
+    "degorged",
+    "degorge"
+  ],
+  "gorge": [
+    "gorged",
+    "gorge"
+  ],
+  "butter": [
+    "buttered"
+  ],
+  "braise": [
+    "braised"
+  ],
+  "salt": [
+    "salted"
+  ],
+  "whip": [
+    "whipped"
+  ]
+}
