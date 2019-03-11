@@ -61,7 +61,7 @@ def run_interface(dir="empty",filename="test"):
 
 
     # parse url using parse_url.py
-    og_ingredients, og_directions = main_parse(url,check="single")
+    og_ingredients, og_directions, og_name = main_parse(url,check="single")
     unfiltered_ingredients = get_full_ingredients(url)
     simple_ingredients = [ i['name'] for i in og_ingredients]
 
@@ -85,6 +85,9 @@ def run_interface(dir="empty",filename="test"):
 
     with open("italian_freq.json", 'r') as i2:
         italian_freq = json.loads(i2.read())
+
+    hella_recipes = pd.read_json("allrecipes-recipes.json",lines=True)
+
 
 
     # Core user interface
@@ -112,7 +115,7 @@ def run_interface(dir="empty",filename="test"):
         print("Select 4 to make the recipe non-vegetarian.")
         print("Select 5 to make the recipe Italian.")
 
-        print("Select X to quit the program. ")
+        print("Select x to quit the program. ")
 
         # select next action
         next = input()
@@ -123,7 +126,10 @@ def run_interface(dir="empty",filename="test"):
         t_full_ingredients = copy.deepcopy(og_ingredients)
         t_directions = copy.deepcopy(og_directions)
         t_unfiltered = copy.deepcopy(unfiltered_ingredients)
-
+        
+        veg_ingredients_list = []
+        for d in t_full_ingredients:
+            veg_ingredients_list.append(d['quantity'] + ' ' + d['measurement'] + ' ' + d['name'])
         # call transform from imported files ------------------------------------------------------------------------
 
 
@@ -138,10 +144,10 @@ def run_interface(dir="empty",filename="test"):
             new_directions = health.health_directions(cleaned_ingredients, t_directions, new_ingredients)
 
         if next == "3":
-            new_ingredients, new_directions = vegetarian.makeVegetarian(t_full_ingredients,t_directions,veg_kb)
+            new_ingredients, new_directions = vegetarian.makeVegetarian(veg_ingredients_list,t_directions,veg_kb)
 
         if next == "4":
-            new_ingredients, new_directions = vegetarian.undoVegetarian(t_full_ingredients,t_directions,veg_kb)
+            new_ingredients, new_directions = vegetarian.undoVegetarian(og_name,veg_ingredients_list,t_directions,hella_recipes,veg_kb)
 
         if next == "5":
             new_ingredients, og_simplified_ingredients = italian.cuisine_to_italian_ingredients(og_ingredients, italian_freq, italian_kb)
@@ -182,7 +188,7 @@ def run_interface(dir="empty",filename="test"):
             for different in differences: print(different)
 
         else:
-            differences = findDifferences(og_ingredients, new_ingredients)
+            differences = findDifferences(veg_ingredients_list, new_ingredients)
             for difference in differences: print(difference)
 
         # write differences to file for future testing
@@ -213,8 +219,8 @@ def run_interface(dir="empty",filename="test"):
 def test_internal():
     # Allows us to test multiple different urls in a row without having to read them in or try multiple
 
-    url_veg = []
-    url_nonveg = []
+    url_veg = ['https://www.allrecipes.com/recipe/65896','https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669']
+    url_nonveg = ['https://www.allrecipes.com/recipe/86297', 'https://www.allrecipes.com/recipe/232908', 'https://www.allrecipes.com/recipe/232908', 'https://www.allrecipes.com/recipe/60598','https://www.allrecipes.com/recipe/228241','https://www.allrecipes.com/recipe/73139']
     url_healthy = ['https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669','https://www.allrecipes.com/recipe/65896']
     url_unhealhy = ['https://www.allrecipes.com/recipe/72381','https://www.allrecipes.com/recipe/8665','https://www.allrecipes.com/recipe/216688', 'https://www.allrecipes.com/recipe/51997']
     url_italian = []

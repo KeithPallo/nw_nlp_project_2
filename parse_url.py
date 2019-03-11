@@ -16,7 +16,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 
 
 
-def main_parse(url_passed,check ="single",url_name = "test"):
+def main_parse(url_passed,check ="single",url_name = "test",veg = "false"):
     """
     url_passed type = string
     """
@@ -61,11 +61,31 @@ def main_parse(url_passed,check ="single",url_name = "test"):
             string = div.text
             directions.append(string)
 
+    for div in body.find_all(class_='recipe-summary__h1'):
+        dish_name = div.text
+
+    # Instanciate Found
+    id_cooking = []
+    id_utensils = []
+
+    # Split Ingredients into Name, Quantity, Measurement
+    # To do
+
+    # Extract cooking and utensils
+    for word in directions:
+
+        if word in cooking:  # potentially remove duplicates
+            id_cooking.append(word)
+        if word in utensils: # potentially remove duplicates
+            id_utensils.append(word)
 
     # Check if single_recipe
     if check == "single":
         # write_single_recipe(url_name,ingredients,id_cooking,id_utensils)
-        return ingredients, directions
+        if veg == "false":
+          return ingredients, directions
+        else:
+          return ingredients, directions, dish_name
 
     else:
         write_testing(url_name,ingredients,id_cooking,id_utensils)
