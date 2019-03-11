@@ -11,6 +11,8 @@ from pprint import pprint
 # load in nltk for
 import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.corpus import stopwords
+import re
 
 # python3 -c 'import parse_url; parse_url.main_parse('https://www.allrecipes.com/recipe/228293')'
 
@@ -94,7 +96,10 @@ def main_parse(url_passed,check ="single",url_name = "test",veg = "false"):
 
 
 
-def parse_directions(url_passed):
+def parse_directions(url_passed,ingredients = None):
+    # Return methods, tools, and steps
+
+    # Ingredients can be any of the type ingredients that we are passing in
 
 
     directions = []
@@ -126,6 +131,9 @@ def parse_directions(url_passed):
             string = div.text
             directions.append(string)
 
+    print("look here")
+    pprint(len(directions))
+
     # Instanciate lists for Tools (cooking) and Methods (utensils )
     id_methods = []
     id_tools = []
@@ -144,13 +152,105 @@ def parse_directions(url_passed):
         if word in tools: # potentially remove duplicates
             id_tools.append(word)
 
-
+    # Full list of methods and tools
     id_methods = list(set(id_methods))
     id_tools = list(set(id_tools))
 
-    return id_methods, id_tools
+    # Parse each ingredient individually
+
+    step_number = 1
+    empty = { }
+
+    steps = []
+
+    # make everygram from ingredients
+
+    ingredient_grams = get_ngrams(ingredients)
+    ingredients_search = list(zip(ingredients, ingredient_grams))
+
+    for direction in directions:
+
+        step = {
+		"times" : [],
+		"ingredients" : [],
+		"methods" : [],
+		"tools" : []}
+
+        # split the directions
+        split_single = direction.split()
+
+        # Find Methods and tools
+        # print(split_single)
+        for word in split_single:
+            # print(type(word))
+            if word in methods:
+                if word not in step['methods']:
+                    step['methods'].append(word)
+            if word in tools:
+                if word not in step['tools']:
+                    step['tools'].append(word)
+
+        # find the times
+        times = get_times(direction)
+        step['times'].extend(times)
+
+        # find the ingredients
+        for ingredient_tup in ingredients_search:
+            # print(ingredient_tup)
+            original = ingredient_tup[0]
+            permuations = ingredient_tup[1]
+
+            for perm in permuations:
+                if perm in direction:
+                    step["ingredients"].append(original)
+                    break
+
+        # append the step
+        steps.append(step)
 
 
+    return id_methods, id_tools, steps
+
+
+
+def get_ngrams(i_list):
+    all_grams = []
+
+    for i in i_list:
+        l = clean_text(i)
+        grams = list(nltk.everygrams(l, max_len=len(l)))
+        grams.sort(key=len, reverse=True)
+        grams = [' '.join(g) for g in grams]
+        all_grams.append(grams)
+
+    return all_grams
+
+
+def clean_text(s):
+    # import stop words
+    stop_words = set(stopwords.words('english'))
+
+    s = re.sub("[^a-zA-Z ]", ' ', s)
+    s = s.lower()
+    s = word_tokenize(s)
+
+    # filter out stop words
+    words = [w for w in s if not w in stop_words]
+
+    return words
+
+
+def get_times(og_direction):
+    times = ['second', 'seconds', 'minute', 'minutes', 'hour', 'hours']
+    direction_times = []
+    tokenized = nltk.word_tokenize(og_direction)
+    for i in tokenized:
+        if i in times:
+            idx = tokenized.index(i)
+            if tokenized[idx-1]:
+                direction_times.append(tokenized[idx-1]+' '+i)
+
+    return direction_times
 
 
 def get_full_ingredients(url_passed):
