@@ -23,44 +23,49 @@ from parse_url import *
 # Write rules - two sets for healthy / unhealthy
 
 file_rules_to_health = {'alcohol': ('nothing', []),
- 'beef': ('replace_then_non', ['low fat turkey','boneless skinless chicken breast']),
+ 'beef': ('replace_then_non', ['low fat turkey']),
  'binders': ('nothing', []),
  'carb': ('replace_then_lowcarb', ['quinoa']),
  'cheeses': ('replace_then_non', []),
+ 'condiments': ('replace_then_low_sugar', []),
+ 'dairy': ('replace_then_non', []),
  'dishes': ('nothing', []),
  'drinks': ('nothing', []),
- 'fats ': ('replace_then_nothing', ['extra virgin olive oil']),
+ 'fats': ('replace_then_nothing', ['extra virgin olive oil']),
  'fruits': ('nothing', []),
  'other_protein': ('nothing', []),
- 'poultry': ('replace_then_nothing', ['orgnaic boneless skinlles chicken breat']),
+ 'poultry': ('nothing', []),
  'sauces': ('replace_then_non', []),
- 'seafood': ('replace_then_non', ['low-fat tilapia']),
- 'seasoning': ('replace_then_nothing', ['']),
+ 'seafood': ('replace_then_nothing', ['wildcaught salmon']),
+ 'seasoning': ('nothing', []),
  'soups': ('nothing', []),
- 'sugars': ('replace_then_nothing', ['stevia', 'aspartame', 'saccharin']),
+ 'sugars': ('replace_then_nothing', ['stevia', 'spartame', 'saccharin']),
  'veg_nuts': ('nothing', [])}
 
-
-# CURRENTLY BEING MUTATED
+# First version being testing
 
 file_rules_to_unhealthy = {'alcohol': ('nothing', []),
-  'beef': ('replace_then_nothing', ['80% lean 20% fat ground beef']),
-  'binders': ('nothing', []),
-  'carb': ('replace_then_nothing', ['fried rice']),
-  'cheeses': ('replace_then_nothing', []),
-  'dishes': ('nothing', []),
-  'drinks': ('replace_then_nothing', ['cherry coca-cola']),
-  'fats ': ('replace_then_nothing', ['extra virgin olive oil']),
-  'fruits': ('nothing', []),
-  'other_protein': ('nothing', []),
-  'poultry': ('replace_then_nothing', ['fried chicken']),
-  'sauces': ('replace_then_nothing', []),
-  'seafood': ('replace_then_nothing', ['heavily buttered lobster']),
-  'seasoning': ('nothing', []),
-  'soups': ('nothing', []),
-  'sugars': ('replace_then_nothing', ['high fructose corn syrup']),
-  'veg_nuts': ('nothing', [])}
-
+ 'beef': ('replace_then_full_fat', ['80% lean ground beef with 20% fat']),
+ 'binders': ('nothing', []),
+ 'cheeses': ('replace_then_full_fat', []),
+ 'dairy': ('replace_then_full_fat', []),
+ 'dishes': ('nothing', []),
+ 'drinks': ('nothing', []),
+ 'fats': ('replace_then_full_fat', ['heavily salted butter']),
+ 'fish': ('replace_then_full_fat', ['full fat chicken thighs']),
+ 'fruits': ('sugar_covered', []),
+ 'grains': ('replace_then_full_fat', ['heavily buttered biscuits']),
+ 'nuts': ('nothing', []),
+ 'oils': ('replace_then_nothing', ['full fat canola oil']),
+ 'other_protein': ('fried', []),
+ 'pasta': ('replace_then_nothing', []),
+ 'poultry': ('replace_then_full_fat', ['full fat chicken thighs']),
+ 'sauces': ('replace_then_high_sodium', []),
+ 'seafood': ('replace_then_heavy_butter', []),
+ 'seasoning': ('replace_then_nothing',[]),
+ 'soups': ('nothing', []),
+ 'sugars': ('replace_then_nothing', []),
+ 'vegetables': ('nothing', [])}
 
 
 
@@ -162,6 +167,8 @@ def ing_swap_funtion(kb,ingredients,rules_dict = "to_health"):
                 break
 
         if category != '':
+            print(" Original Ingredient: " + ingredient)
+            print(" Category: " + category)
             # structured to allow different data structures for different rules
 
             rule = rules_dict[category]
@@ -201,14 +208,67 @@ def ing_swap_funtion(kb,ingredients,rules_dict = "to_health"):
                 else:
                     final.append("low-carb " + ingredient)
 
+
+            elif direction == "replace_then_low_sugar":
+                # replace until list is empty - then add "low-card " to the ingredient
+                if rule[1]:
+                    val = rules_dict[category][1].pop(0)
+                    final.append(val)
+                else:
+                    final.append("low sugar " + ingredient)
+
+
+
+
             # Unhealthy direction -------------------------------------------------
             elif direction == "fried":
-                # make the direction fried
+                # make the ingtedient fried
                 pass
 
 
             elif direction == "replace_then_full_fat":
+                # replace then add - "full fat"
+                if rule[1]:
+                    val = rules_dict[category][1].pop(0)
+                    final.append(val)
+                else:
+                    final.append("full fat " + ingredient)
+
+            elif direction == "replace_then_heavy_butter":
+                if rule[1]:
+                    val = rules_dict[category][1].pop(0)
+                    final.append(val)
+                else:
+                    final.append("heavily buttered " + ingredient)
+
+
+            elif direction == "sugar_covered":
+                if rule[1]:
+                    val = rules_dict[category][1].pop(0)
+                    final.append(val)
+                else:
+                    final.append("sugar covered " + ingredient)
+
+
+
+            elif direction == "full_fat_with_cheese":
                 pass
+
+            elif direction == "replace_then_high_sodium":
+                if rule[1]:
+                    val = rules_dict[category][1].pop(0)
+                    final.append(val)
+                else:
+                    final.append("high sodium " + ingredient)
+
+            elif direction == "add_mixed_sugar":
+                if rule[1]:
+                    val = rules_dict[category][1].pop(0)
+                    final.append(val)
+                else:
+                    final.append(ingredient + " with mixed in sugar")
+
+
 
 
 

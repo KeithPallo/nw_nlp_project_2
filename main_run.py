@@ -66,10 +66,16 @@ def run_interface(dir="empty",filename="test"):
     simple_ingredients = [ i['name'] for i in og_ingredients]
 
 
+    # parse directions for steps Tools, Methods, and Steps
+
+
 
     # load in associated KB's - currently only healthy
     with open("to_health_ingredients_kb.json", 'r') as infile:
         health_kb = json.load(infile)
+
+    with open("to_unhealth_ingredients_kb.json", 'r') as infile:
+        unhealth_kb = json.load(infile)
 
     with open("veg_kb.json", 'r') as f:
         veg_kb = json.loads(f.read())
@@ -148,8 +154,8 @@ def run_interface(dir="empty",filename="test"):
             new_directions = health.health_directions(cleaned_ingredients, t_directions, new_ingredients)
 
         if next == "2":
-            cleaned_ingredients = health.clean_ingredients(t_ingredients,health_kb)
-            new_ingredients = health.ing_swap_funtion(health_kb,cleaned_ingredients,rules_dict = "to_unhealthy" )
+            cleaned_ingredients = health.clean_ingredients(t_ingredients,unhealth_kb)
+            new_ingredients = health.ing_swap_funtion(unhealth_kb,cleaned_ingredients,rules_dict = "to_unhealthy" )
             new_directions = health.health_directions(cleaned_ingredients, t_directions, new_ingredients)
 
         if next == "3":
@@ -248,6 +254,7 @@ def test_internal():
 
     url_veg = []
     url_nonveg = []
+
     url_healthy = ['https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669','https://www.allrecipes.com/recipe/65896'
                     ]
     url_unhealhy = []
@@ -264,7 +271,7 @@ def test_internal():
     if command == "veg": target = url_veg
     if command == "nonveg": target = url_nonveg
     if command == "healthy": target = url_healthy
-    if command == "unhealthy": target = url_unhealthy
+    if command == "unhealthy": target = url_unhealhy
     if command == "italian": target = url_italian
 
     for url in target:
@@ -316,13 +323,13 @@ def printPretty(old_stuff_dicts, ingredients,unfiltered):
         original = unfiltered[index]
 
         # check if nothing swapped or substring - if not, keep original
-        if new_ing == "not_changed" or new_ing in original:
+        if new_ing == "not_changed" or new_ing in original.lower():
             new_ingredients.append(original)
 
         # UPDATE TO BETTER IMPLEMENTATION -- use parsing from unfiltered
         else:
             # update with new measurement
-            full_new = old_stuff_dicts[index]['quantity'] + old_stuff_dicts[index]['measurement'] + ' ' + ingredients[index]
+            full_new = old_stuff_dicts[index]['quantity'] + ' ' + old_stuff_dicts[index]['measure'] + ' ' + ingredients[index]
 
             new_ingredients.append(full_new)
 
@@ -331,5 +338,5 @@ def printPretty(old_stuff_dicts, ingredients,unfiltered):
 
 
 if __name__ == "__main__":
-    test_internal()
-    # run_interface()
+    # test_internal()
+    run_interface()
