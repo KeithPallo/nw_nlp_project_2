@@ -1,11 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[6]:
-
-
 # Load in necesarry libs
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -13,12 +6,10 @@ import json
 import re
 import string
 import copy
-
 import collections
 from collections import Counter
-
-from ingredient_parser import en
-
+# from ingredient_parser import en
+import ing_parser
 from pprint import pprint
 
 import nltk
@@ -29,13 +20,10 @@ from nltk.util import ngrams
 from parse_url import *
 
 
-# In[7]:
-
-
 # Write rules - two sets for healthy / unhealthy
 
-file_rules = {'alcohol': ('nothing', []),
- 'beef': ('replace_then_non', ['low fat turkey']),
+file_rules_to_health = {'alcohol': ('nothing', []),
+ 'beef': ('replace_then_non', ['low fat turkey','boneless skinless chicken breast']),
  'binders': ('nothing', []),
  'carb': ('replace_then_lowcarb', ['quinoa']),
  'cheeses': ('replace_then_non', []),
@@ -44,20 +32,40 @@ file_rules = {'alcohol': ('nothing', []),
  'fats ': ('replace_then_nothing', ['extra virgin olive oil']),
  'fruits': ('nothing', []),
  'other_protein': ('nothing', []),
- 'poultry': ('replace_then_nothing', ['wildcaught salmon']),
+ 'poultry': ('replace_then_nothing', ['orgnaic boneless skinlles chicken breat']),
  'sauces': ('replace_then_non', []),
- 'seasoning': ('nothing', []),
+ 'seafood': ('replace_then_non', ['low-fat tilapia']),
+ 'seasoning': ('replace_then_nothing', ['']),
  'soups': ('nothing', []),
- 'sugars': ('replace_then_nothing', ['stevia', 'spartame', 'saccharin']),
+ 'sugars': ('replace_then_nothing', ['stevia', 'aspartame', 'saccharin']),
  'veg_nuts': ('nothing', [])}
 
 
-# In[8]:
+# CURRENTLY BEING MUTATED
+
+file_rules_to_unhealthy = {'alcohol': ('nothing', []),
+  'beef': ('replace_then_nothing', ['80% lean 20% fat ground beef']),
+  'binders': ('nothing', []),
+  'carb': ('replace_then_nothing', ['fried rice']),
+  'cheeses': ('replace_then_nothing', []),
+  'dishes': ('nothing', []),
+  'drinks': ('replace_then_nothing', ['cherry coca-cola']),
+  'fats ': ('replace_then_nothing', ['extra virgin olive oil']),
+  'fruits': ('nothing', []),
+  'other_protein': ('nothing', []),
+  'poultry': ('replace_then_nothing', ['fried chicken']),
+  'sauces': ('replace_then_nothing', []),
+  'seafood': ('replace_then_nothing', ['heavily buttered lobster']),
+  'seasoning': ('nothing', []),
+  'soups': ('nothing', []),
+  'sugars': ('replace_then_nothing', ['high fructose corn syrup']),
+  'veg_nuts': ('nothing', [])}
 
 
-# Helper function for KB comparison
+
 
 def clean_text(s):
+    # Helper function for KB comparison
     tokens = word_tokenize(s)
     table = str.maketrans('', '', string.punctuation)
     stripped = [w.translate(table) for w in tokens]
@@ -73,12 +81,8 @@ def clean_text(s):
     return words
 
 
-# In[9]:
-
-
-# Function for comparing simple list against KB
-
 def comp_to_kb(ing_list,ingredientsKB):
+    # Function for comparing simple list against KB
     ingredients = {}
 
     for category in ingredientsKB:
@@ -94,8 +98,6 @@ def comp_to_kb(ing_list,ingredientsKB):
 
     return ingredients
 
-
-# In[10]:
 
 
 def compare_ingredients(dict_1,dict_2):
@@ -132,23 +134,24 @@ def compare_ingredients(dict_1,dict_2):
 
 
 
-
-
-# In[42]:
-
-
-def ing_swap_funtion(kb,ingredients,rules_dict = file_rules):
+def ing_swap_funtion(kb,ingredients,rules_dict = "to_health"):
 
     # assumes ingredients are preprocessed going into this function - may need to change this
 
-    final = []
+    if rules_dict == "to_health":
+        rules_dict = file_rules_to_health
 
-    # pprint(rules_dict.keys())
+    elif rules_dict =="to_unhealthy":
+        rules_dict = file_rules_to_unhealthy
+
+    else:
+        print("ERROR")
+
+    final = []
 
     # Iterate through all potential ingredients
     for ingredient in ingredients:
-        #print(ingredient)
-        #print(final)
+
         # initialize empty category
         category = ''
 
@@ -161,10 +164,6 @@ def ing_swap_funtion(kb,ingredients,rules_dict = file_rules):
         if category != '':
             # structured to allow different data structures for different rules
 
-            # lookup value in rules_dict
-
-            # print(category)
-            #print(rule)
             rule = rules_dict[category]
             direction = rule[0]
 
@@ -176,8 +175,6 @@ def ing_swap_funtion(kb,ingredients,rules_dict = file_rules):
 
             elif direction == "replace_then_nothing":
                 # replace until list is empty - then, do nothing to the ingredient
-
-                # print(rule)
 
                 if rule[1]:
                     val = rules_dict[category][1].pop(0)
@@ -204,6 +201,19 @@ def ing_swap_funtion(kb,ingredients,rules_dict = file_rules):
                 else:
                     final.append("low-carb " + ingredient)
 
+            # Unhealthy direction -------------------------------------------------
+            elif direction == "fried":
+                # make the direction fried
+                pass
+
+
+            elif direction == "replace_then_full_fat":
+                pass
+
+
+
+
+
             else:
                 print("unaccounted for case")
 
@@ -213,9 +223,6 @@ def ing_swap_funtion(kb,ingredients,rules_dict = file_rules):
             final.append(ingredient)
 
     return final
-
-
-# In[12]:
 
 
 def clean_ingredients(ingredients,kb):
@@ -229,7 +236,6 @@ def clean_ingredients(ingredients,kb):
 
     # build simple kb
     for category in kb.keys():
-        #print(category)
         current = tuple(kb[category])
         simple_kb.update(current)
 
@@ -243,10 +249,8 @@ def clean_ingredients(ingredients,kb):
         # get longest version
         longest = find_longest(all_possible,simple_kb)
 
-        # print(longest)
-
         # check to make sure it is not empty - if it is, then use the standard version
-        if not longest: longest = ingredient
+        if not longest: longest = "not_changed"
 
         clean_ingredients.append(longest)
 
@@ -255,14 +259,8 @@ def clean_ingredients(ingredients,kb):
     # return all cleaned spring
     clean_ingredients = [x[0] if type(x) == 'list' else x for x in clean_ingredients]
 
-
     return clean_ingredients
 
-
-
-
-
-# In[13]:
 
 
 def make_all_possible_ngrams(ingredient):
@@ -277,10 +275,6 @@ def make_all_possible_ngrams(ingredient):
             all_grams.append(" ".join(tokens[index:index_2]))
 
     return all_grams
-
-
-
-# In[14]:
 
 
 def find_longest(ingredient_list,simple_kb):
@@ -299,39 +293,24 @@ def find_longest(ingredient_list,simple_kb):
     if max_list:
         max_list = max_list[0]
 
-    #print(max_list)
     return max_list
 
 
 
+def health_directions(og_simplified_ingredients, og_directions, transformed_ingredients):
+    new_directions = '@'.join(og_directions)
 
-# In[15]:
+    print(og_simplified_ingredients)
 
+    for i in og_simplified_ingredients:
+        if i in new_directions:
+            new_directions = new_directions.replace(i, transformed_ingredients[og_simplified_ingredients.index(i)])
+
+    new_directions = new_directions.split('@')
+
+    return new_directions
 
 # import the KB - specifically for healthy ingredients
 
 with open("to_health_ingredients_kb.json", 'r') as infile:
     health_kb = json.load(infile)
-
-
-# In[18]:
-
-
-# url1 = 'https://www.allrecipes.com/recipe/228293' # Test url - currently not in use
-
-
-# In[28]:
-
-
-# ingredients, directions = main_parse(url1,check="single")
-# ingredients = [ i['name'] for i in ingredients]
-
-
-# In[43]:
-
-
-#cleaned_ingredients = clean_ingredients(ingredients,health_kb)
-# new_ingredients = ing_swap_funtion(health_kb,cleaned_ingredients)
-
-
-# In[ ]:
