@@ -171,9 +171,10 @@ def run_interface(dir="empty",filename="test"):
         t_directions = copy.deepcopy(og_directions)
         t_unfiltered = copy.deepcopy(unfiltered_ingredients)
 
+
         veg_ingredients_list = []
         for d in t_full_ingredients:
-            veg_ingredients_list.append(d['quantity'] + ' ' + d['measure'] + ' ' + d['name'])
+            veg_ingredients_list.append(d['quantity'] + ' ' + d['measurement'] + ' ' + d['name'])
         # call transform from imported files ------------------------------------------------------------------------
 
 
@@ -194,27 +195,27 @@ def run_interface(dir="empty",filename="test"):
             new_ingredients, new_directions = vegetarian.undoVegetarian(og_name,veg_ingredients_list,t_directions,hella_recipes,veg_kb)
 
         if next == "5":
-            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(og_ingredients, italian_kb, cuisine_kb)
-            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, og_directions, new_ingredients)
+            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, italian_kb, cuisine_kb)
+            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
 
         if next == "6":
-            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(og_ingredients, chinese_kb, cuisine_kb)
-            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, og_directions, new_ingredients)
+            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, chinese_kb, cuisine_kb)
+            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
         if next == "7":
-            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(og_ingredients, french_kb, cuisine_kb)
-            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, og_directions, new_ingredients)
+            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, french_kb, cuisine_kb)
+            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
 
         if next == "8":
-            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(og_ingredients, indian_kb, cuisine_kb)
-            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, og_directions, new_ingredients)
+            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, indian_kb, cuisine_kb)
+            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
 
         if next == "9":
-            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(og_ingredients, mexican_kb, cuisine_kb)
-            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, og_directions, new_ingredients)
+            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, mexican_kb, cuisine_kb)
+            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
 
         if next == "10":
-            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(og_ingredients, southern_us_kb, cuisine_kb)
-            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, og_directions, new_ingredients)
+            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, southern_us_kb, cuisine_kb)
+            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
 
         elif next == "x":
             print("quiting the url currently being tested")
@@ -363,7 +364,7 @@ def printPretty(old_stuff_dicts, ingredients,unfiltered):
         # UPDATE TO BETTER IMPLEMENTATION -- use parsing from unfiltered
         else:
             # update with new measurement
-            full_new = old_stuff_dicts[index]['quantity'] + ' ' + old_stuff_dicts[index]['measure'] + ' ' + ingredients[index]
+            full_new = old_stuff_dicts[index]['quantity'] + ' ' + old_stuff_dicts[index]['measurement'] + ' ' + ingredients[index]
 
             new_ingredients.append(full_new)
 
@@ -373,4 +374,5 @@ def printPretty(old_stuff_dicts, ingredients,unfiltered):
 
 if __name__ == "__main__":
     # test_internal()
+
     run_interface()

@@ -63,8 +63,17 @@ def main_parse(url_passed,check ="single",url_name = "test",veg = "false"):
             string = div.text
             directions.append(string)
 
+    flag = False
     for div in body.find_all(class_='recipe-summary__h1'):
         dish_name = div.text
+        flag = True
+
+    if not flag:
+        for div in body.find_all(class_='recipe-title'):
+            dish_name = div.text
+
+    dish_name = dish_name.replace(')','')
+    dish_name = dish_name.replace('(','')
 
     # Instanciate Found
     id_cooking = []
@@ -131,8 +140,6 @@ def parse_directions(url_passed,ingredients = None):
             string = div.text
             directions.append(string)
 
-    print("look here")
-    pprint(len(directions))
 
     # Instanciate lists for Tools (cooking) and Methods (utensils )
     id_methods = []

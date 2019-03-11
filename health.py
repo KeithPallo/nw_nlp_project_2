@@ -167,8 +167,8 @@ def ing_swap_funtion(kb,ingredients,rules_dict = "to_health"):
                 break
 
         if category != '':
-            print(" Original Ingredient: " + ingredient)
-            print(" Category: " + category)
+            #print(" Original Ingredient: " + ingredient)
+            #print(" Category: " + category)
             # structured to allow different data structures for different rules
 
             rule = rules_dict[category]
@@ -223,7 +223,7 @@ def ing_swap_funtion(kb,ingredients,rules_dict = "to_health"):
             # Unhealthy direction -------------------------------------------------
             elif direction == "fried":
                 # make the ingtedient fried
-                pass
+                final.append("fried" + ingredient)
 
 
             elif direction == "replace_then_full_fat":
@@ -358,9 +358,15 @@ def find_longest(ingredient_list,simple_kb):
 
 
 def health_directions(og_simplified_ingredients, og_directions, transformed_ingredients):
-    new_directions = '@'.join(og_directions)
+    #print(len(og_simplified_ingredients))
+    #print(len(og_directions))
+    #print(len(transformed_ingredients))
 
-    print(og_simplified_ingredients)
+    #print(og_simplified_ingredients)
+    #print(og_directions)
+    #print(transformed_ingredients)
+
+    new_directions = '@'.join(og_directions)
 
     for i in og_simplified_ingredients:
         if i in new_directions:
