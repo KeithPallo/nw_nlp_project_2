@@ -68,6 +68,28 @@ def run_interface(dir="empty",filename="test"):
 
     # parse directions for steps Tools, Methods, and Steps
 
+    print("These are the parsed methods, tools, and steps. They are only printed once to help with UI.")
+
+    methods, tools, steps = parse_directions(url,simple_ingredients)
+    print( "These are the methods use in the recipe.")
+    print(methods)
+    print('\n' * 2)
+
+    print("These are the tools used in the recipe.")
+    print(tools)
+    print('\n' * 2)
+
+    print("There are the parsed steps:")
+    num = 1
+
+    for step in steps:
+        print("This is step " + str(num) )
+        pprint(step)
+        print('\n' * 2)
+        num += 1
+
+    print("Press enter to continue to the main menu.")
+    hold = input()
 
 
     # load in associated KB's - currently only healthy
