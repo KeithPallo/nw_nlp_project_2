@@ -173,8 +173,14 @@ def parse(string):
 	if p['preparation'] == '':
 		p['preparation'] = 'n/a'
 
-	if 'to' in n['name']:
-		n['name'] = n['name'].replace('to', '').strip()
+
+	if "to" in n['name']:
+		split_name = word_tokenize(n['name'])
+		split_name = [ "" if x == "to" else x for x in split_name]
+		n['name'] = " ".join(split_name)
+
+	if n['name'] == '':
+		n['name'] = reg.group(9).strip().lower()
 
 	if m == {'measurement': ''} or 'None' in m['measurement'] and r'\d' not in m['measurement']:
 		splitN = reg.group(9).split()

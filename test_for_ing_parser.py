@@ -2,8 +2,6 @@ from ing_parser import parse
 import json
 from pprint import pprint
 
-# import nltk
-# from nltk import *
 
 
 print(parse('2 liters of milk'))

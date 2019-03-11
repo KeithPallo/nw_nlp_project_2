@@ -44,6 +44,7 @@ import nltk
 #
 # outputs: - list of new ingredients as strings
 #          - list of new directions as strings
+
 def makeVegetarian(ingredients, directions, kb):
     Substitutions = {'meats':{'ingredients':['1 lb extra-firm tofu, drained',
                                              '1 tablespoon dark sesame oil, divided',

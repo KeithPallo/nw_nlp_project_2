@@ -13,7 +13,6 @@ import copy
 import collections
 import os
 from collections import Counter
-# from ingredient_parser import en
 import ing_parser
 from pprint import pprint
 
@@ -29,14 +28,13 @@ import health
 import vegetarian
 import cuisine
 
-# python3 -c 'import main; main.run_interface()'
 
-# Potential for importing Jupyter notebook - have not tested this out
-from pygments import highlight
-from pygments.lexers import PythonLexer
-from pygments.formatters import HtmlFormatter
-from IPython.display import display, HTML
-formatter = HtmlFormatter()
+# Potential for importing Jupyter notebook - currently no use
+# from pygments import highlight
+# from pygments.lexers import PythonLexer
+# from pygments.formatters import HtmlFormatter
+# from IPython.display import display, HTML
+# formatter = HtmlFormatter()
 
 
 def run_interface(dir="empty",filename="test"):
@@ -178,99 +176,105 @@ def run_interface(dir="empty",filename="test"):
         # call transform from imported files ------------------------------------------------------------------------
 
 
-        if next == '1':
-            cleaned_ingredients = health.clean_ingredients(t_ingredients,health_kb)
-            new_ingredients = health.ing_swap_funtion(health_kb,cleaned_ingredients)
-            new_directions = health.health_directions(cleaned_ingredients, t_directions, new_ingredients)
 
-        if next == "2":
-            cleaned_ingredients = health.clean_ingredients(t_ingredients,unhealth_kb)
-            new_ingredients = health.ing_swap_funtion(unhealth_kb,cleaned_ingredients,rules_dict = "to_unhealthy" )
-            new_directions = health.health_directions(cleaned_ingredients, t_directions, new_ingredients)
+        try:
 
-        if next == "3":
-            new_ingredients, new_directions = vegetarian.makeVegetarian(veg_ingredients_list,t_directions,veg_kb)
+            if next == '1':
+                cleaned_ingredients = health.clean_ingredients(t_ingredients,health_kb)
+                new_ingredients = health.ing_swap_funtion(health_kb,cleaned_ingredients)
+                new_directions = health.health_directions(cleaned_ingredients, t_directions, new_ingredients)
 
-        if next == "4":
-            new_ingredients, new_directions = vegetarian.undoVegetarian(og_name,veg_ingredients_list,t_directions,hella_recipes,veg_kb)
+            if next == "2":
+                cleaned_ingredients = health.clean_ingredients(t_ingredients,unhealth_kb)
+                new_ingredients = health.ing_swap_funtion(unhealth_kb,cleaned_ingredients,rules_dict = "to_unhealthy" )
+                new_directions = health.health_directions(cleaned_ingredients, t_directions, new_ingredients)
 
-        if next == "5":
-            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, italian_kb, cuisine_kb)
-            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
+            if next == "3":
+                new_ingredients, new_directions = vegetarian.makeVegetarian(veg_ingredients_list,t_directions,veg_kb)
 
-        if next == "6":
-            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, chinese_kb, cuisine_kb)
-            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
-        if next == "7":
-            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, french_kb, cuisine_kb)
-            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
+            if next == "4":
+                new_ingredients, new_directions = vegetarian.undoVegetarian(og_name,veg_ingredients_list,t_directions,hella_recipes,veg_kb)
 
-        if next == "8":
-            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, indian_kb, cuisine_kb)
-            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
+            if next == "5":
+                new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, italian_kb, cuisine_kb)
+                new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
 
-        if next == "9":
-            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, mexican_kb, cuisine_kb)
-            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
+            if next == "6":
+                new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, chinese_kb, cuisine_kb)
+                new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
+            if next == "7":
+                new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, french_kb, cuisine_kb)
+                new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
 
-        if next == "10":
-            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, southern_us_kb, cuisine_kb)
-            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
+            if next == "8":
+                new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, indian_kb, cuisine_kb)
+                new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
 
-        elif next == "x":
-            print("quiting the url currently being tested")
-            _continue = False
-            return
+            if next == "9":
+                new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, mexican_kb, cuisine_kb)
+                new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
 
-        new_directions = [ s.strip() for s in new_directions]
+            if next == "10":
+                new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(t_full_ingredients, southern_us_kb, cuisine_kb)
+                new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, t_directions, new_ingredients)
 
+            elif next == "x":
+                print("quiting the url currently being tested")
+                _continue = False
+                return
 
-        # modify ingredients to include measurements, etc.
-        if next not in ["3","4"]:
-            new_ingredients = printPretty(og_ingredients,new_ingredients,t_unfiltered)
-        else:
-            pass
-            # MARIO - whatever we need to do here
-            # don't need to do this
-
-        print("Here is your new recipe! ")
-        print("----------------------------------------------------------------------")
-
-        print("The new list of ingredients are:")
-
-        # print new ingredients
-        for ingredient in new_ingredients: print(ingredient)
+            new_directions = [ s.strip() for s in new_directions]
 
 
-        # show the user the changes in ingredients
-        print("----------------------------------------------------------------------")
-        print("The changes in the ingredients were: ")
+            # modify ingredients to include measurements, etc.
+            if next not in ["3","4"]:
+                new_ingredients = printPretty(og_ingredients,new_ingredients,t_unfiltered)
+            else:
+                pass # nothing needed for veg
 
-        if next not in ["3","4"]:
-            differences = find_swaps(t_unfiltered,new_ingredients)
-            for different in differences: print(different)
+            print("Here is your new recipe! ")
+            print("----------------------------------------------------------------------")
 
-        else:
-            differences = findDifferences(veg_ingredients_list, new_ingredients)
-            for difference in differences: print(difference)
+            print("The new list of ingredients are:")
 
-        # write differences to file for future testing
-        file = open('test.txt', "a+")
-        for difference in differences:
-            file.write('Change : ' + difference + '\n\n')
-        file.close()
+            # print new ingredients
+            for ingredient in new_ingredients: print(ingredient)
 
 
-        # print the new directions
-        print("----------------------------------------------------------------------")
-        print(" The new directions are as follows: ")
-        pprint(new_directions)
+            # show the user the changes in ingredients
+            print("----------------------------------------------------------------------")
+            print("The changes in the ingredients were: ")
 
-        # write new directions for testing
-        file = open('test.txt', "a+")
-        for direction in new_directions:
-            file.write('New Direction : ' + direction + '\n\n')
-        file.close()
+            if next not in ["3","4"]:
+                differences = find_swaps(t_unfiltered,new_ingredients)
+                for different in differences: print(different)
+
+            else:
+                differences = findDifferences(veg_ingredients_list, new_ingredients)
+                for difference in differences: print(difference)
+
+            # write differences to file for future testing
+            file = open('test.txt', "a+")
+            for difference in differences:
+                file.write('Change : ' + difference + '\n\n')
+            file.close()
+
+
+            # print the new directions
+            print("----------------------------------------------------------------------")
+            print(" The new directions are as follows: ")
+            pprint(new_directions)
+
+            # write new directions for testing
+            file = open('test.txt', "a+")
+            for direction in new_directions:
+                file.write('New Direction : ' + direction + '\n\n')
+            file.close()
+
+        except:
+            print('\n' * 2)
+            print("There were no changes to the recipe.")
+            print('\n' * 2)
 
         print( "Press enter to return to the main menu, otherwise enter x to exit")
 
@@ -283,16 +287,12 @@ def test_internal():
     # Allows us to test multiple different urls in a row without having to read them in or try multiple
 
 
-    url_veg = []
-    url_nonveg = []
-    url_healthy = ['https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669','https://www.allrecipes.com/recipe/65896']
-    url_unhealhy = []
+
     url_italian = ['https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669','https://www.allrecipes.com/recipe/65896']
     url_veg = ['https://www.allrecipes.com/recipe/65896','https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669']
     url_nonveg = ['https://www.allrecipes.com/recipe/86297', 'https://www.allrecipes.com/recipe/232908', 'https://www.allrecipes.com/recipe/232908', 'https://www.allrecipes.com/recipe/60598','https://www.allrecipes.com/recipe/228241','https://www.allrecipes.com/recipe/73139']
     url_healthy = ['https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669','https://www.allrecipes.com/recipe/65896']
     url_unhealhy = ['https://www.allrecipes.com/recipe/72381','https://www.allrecipes.com/recipe/8665','https://www.allrecipes.com/recipe/216688', 'https://www.allrecipes.com/recipe/51997']
-    url_italian = []
 
 
 
@@ -330,7 +330,7 @@ def find_swaps(old_ingredients,new_ingredients):
 
 
 def findDifferences(old_ingredients, new_ingredients):
-    # Different version of find_swaps - currently not being used.
+    # Finds differences for veg and non veg methods
     changes_made = []
     new_ing_dict = dict((k,0) for k in new_ingredients)
 
@@ -348,6 +348,7 @@ def findDifferences(old_ingredients, new_ingredients):
 
 
 def printPretty(old_stuff_dicts, ingredients,unfiltered):
+    # Updades ingredients to best form
 
     new_ingredients = []
 
@@ -361,7 +362,6 @@ def printPretty(old_stuff_dicts, ingredients,unfiltered):
         if new_ing == "not_changed" or new_ing in original.lower():
             new_ingredients.append(original)
 
-        # UPDATE TO BETTER IMPLEMENTATION -- use parsing from unfiltered
         else:
             # update with new measurement
             full_new = old_stuff_dicts[index]['quantity'] + ' ' + old_stuff_dicts[index]['measurement'] + ' ' + ingredients[index]
@@ -373,6 +373,6 @@ def printPretty(old_stuff_dicts, ingredients,unfiltered):
 
 
 if __name__ == "__main__":
-    # test_internal()
+    test_internal()
 
-    run_interface()
+    # run_interface()

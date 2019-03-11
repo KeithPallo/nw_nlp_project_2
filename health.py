@@ -8,7 +8,6 @@ import string
 import copy
 import collections
 from collections import Counter
-# from ingredient_parser import en
 import ing_parser
 from pprint import pprint
 
@@ -223,7 +222,7 @@ def ing_swap_funtion(kb,ingredients,rules_dict = "to_health"):
             # Unhealthy direction -------------------------------------------------
             elif direction == "fried":
                 # make the ingtedient fried
-                final.append("fried" + ingredient)
+                final.append("fried " + ingredient)
 
 
             elif direction == "replace_then_full_fat":
@@ -358,13 +357,7 @@ def find_longest(ingredient_list,simple_kb):
 
 
 def health_directions(og_simplified_ingredients, og_directions, transformed_ingredients):
-    #print(len(og_simplified_ingredients))
-    #print(len(og_directions))
-    #print(len(transformed_ingredients))
 
-    #print(og_simplified_ingredients)
-    #print(og_directions)
-    #print(transformed_ingredients)
 
     new_directions = '@'.join(og_directions)
 

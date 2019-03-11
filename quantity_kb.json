@@ -3,30 +3,320 @@
     "0",
     "zero"
   ],
+  "1/10": [
+    "1/10",
+    "one-tenth",
+    "one-tenths",
+    "one tenth",
+    "one tenths"
+  ],
+  "2/10": [
+    "2/10",
+    "two-tenth",
+    "two-tenths",
+    "two tenth",
+    "two tenths"
+  ],
+  "3/10": [
+    "3/10",
+    "three-tenth",
+    "three-tenths",
+    "three tenth",
+    "three tenths"
+  ],
+  "4/10": [
+    "4/10",
+    "four-tenth",
+    "four-tenths",
+    "four tenth",
+    "four tenths"
+  ],
+  "5/10": [
+    "5/10",
+    "five-tenth",
+    "five-tenths",
+    "five tenth",
+    "five tenths"
+  ],
+  "6/10": [
+    "6/10",
+    "six-tenth",
+    "six-tenths",
+    "six tenth",
+    "six tenths"
+  ],
+  "7/10": [
+    "7/10",
+    "seven-tenth",
+    "seven-tenths",
+    "seven tenth",
+    "seven tenths"
+  ],
+  "8/10": [
+    "8/10",
+    "eight-tenth",
+    "eight-tenths",
+    "eight tenth",
+    "eight tenths"
+  ],
+  "9/10": [
+    "9/10",
+    "nine-tenth",
+    "nine-tenths",
+    "nine tenth",
+    "nine tenths"
+  ],
+  "1/9": [
+    "1/9",
+    "one-ninth",
+    "one-ninths",
+    "one ninth",
+    "one ninths"
+  ],
+  "2/9": [
+    "2/9",
+    "two-ninth",
+    "two-ninths",
+    "two ninth",
+    "two ninths"
+  ],
+  "3/9": [
+    "3/9",
+    "three-ninth",
+    "three-ninths",
+    "three ninth",
+    "three ninths"
+  ],
+  "4/9": [
+    "4/9",
+    "four-ninth",
+    "four-ninths",
+    "four ninth",
+    "four ninths"
+  ],
+  "5/9": [
+    "5/9",
+    "five-ninth",
+    "five-ninths",
+    "five ninth",
+    "five ninths"
+  ],
+  "6/9": [
+    "6/9",
+    "six-ninth",
+    "six-ninths",
+    "six ninth",
+    "six ninths"
+  ],
+  "7/9": [
+    "7/9",
+    "seven-ninth",
+    "seven-ninths",
+    "seven ninth",
+    "seven ninths"
+  ],
+  "8/9": [
+    "8/9",
+    "eight-ninth",
+    "eight-ninths",
+    "eight ninth",
+    "eight ninths"
+  ],
+  "1/8": [
+    "1/8",
+    "one-eight",
+    "one-eights",
+    "one eight",
+    "one eights"
+  ],
+  "2/8": [
+    "2/8",
+    "two-eight",
+    "two-eights",
+    "two eight",
+    "two eights"
+  ],
+  "3/8": [
+    "3/8",
+    "three-eight",
+    "three-eights",
+    "three eight",
+    "three eights"
+  ],
+  "4/8": [
+    "4/8",
+    "four-eight",
+    "four-eights",
+    "four eight",
+    "four eights"
+  ],
+  "5/8": [
+    "5/8",
+    "five-eight",
+    "five-eights",
+    "five eight",
+    "five eights"
+  ],
+  "6/8": [
+    "6/8",
+    "six-eight",
+    "six-eights",
+    "six eight",
+    "six eights"
+  ],
+  "7/8": [
+    "7/8",
+    "seven-eight",
+    "seven-eights",
+    "seven eight",
+    "seven eights"
+  ],
+  "1/7": [
+    "1/7",
+    "one-seventh",
+    "one-sevenths",
+    "one seventh",
+    "one sevenths"
+  ],
+  "2/7": [
+    "2/7",
+    "two-seventh",
+    "two-sevenths",
+    "two seventh",
+    "two sevenths"
+  ],
+  "3/7": [
+    "3/7",
+    "three-seventh",
+    "three-sevenths",
+    "three seventh",
+    "three sevenths"
+  ],
+  "4/7": [
+    "4/7",
+    "four-seventh",
+    "four-sevenths",
+    "four seventh",
+    "four sevenths"
+  ],
+  "5/7": [
+    "5/7",
+    "five-seventh",
+    "five-sevenths",
+    "five seventh",
+    "five sevenths"
+  ],
+  "6/7": [
+    "6/7",
+    "six-seventh",
+    "six-sevenths",
+    "six seventh",
+    "six sevenths"
+  ],
+  "1/6": [
+    "1/6",
+    "one-sixth",
+    "one-sixths",
+    "one sixth",
+    "one sixths"
+  ],
+  "2/6": [
+    "2/6",
+    "two-sixth",
+    "two-sixths",
+    "two sixth",
+    "two sixths"
+  ],
+  "3/6": [
+    "3/6",
+    "three-sixth",
+    "three-sixths",
+    "three sixth",
+    "three sixths"
+  ],
+  "4/6": [
+    "4/6",
+    "four-sixth",
+    "four-sixths",
+    "four sixth",
+    "four sixths"
+  ],
+  "5/6": [
+    "5/6",
+    "five-sixth",
+    "five-sixths",
+    "five sixth",
+    "five sixths"
+  ],
+  "1/5": [
+    "1/5",
+    "one-fifth",
+    "one-fifths",
+    "one fifth",
+    "one fifths"
+  ],
+  "2/5": [
+    "2/5",
+    "two-fifth",
+    "two-fifths",
+    "two fifth",
+    "two fifths"
+  ],
+  "3/5": [
+    "3/5",
+    "three-fifth",
+    "three-fifths",
+    "three fifth",
+    "three fifths"
+  ],
+  "4/5": [
+    "4/5",
+    "four-fifth",
+    "four-fifths",
+    "four fifth",
+    "four fifths"
+  ],
   "1/4": [
     "1/4",
-    "one-quarter",
-    "quarter"
+    "one-fourth",
+    "one-fourths",
+    "one fourth",
+    "one fourths"
   ],
-  "1/3": [
-    "1/3",
-    "one-third",
-    "a third"
-  ],
-  "1/2": [
-    "1/2",
-    "one-half",
-    "half"
-  ],
-  "2/3": [
-    "2/3",
-    "two-third",
-    "two-thirds"
+  "2/4": [
+    "2/4",
+    "two-fourth",
+    "two-fourths",
+    "two fourth",
+    "two fourths"
   ],
   "3/4": [
     "3/4",
     "three-fourth",
-    "three-fourths"
+    "three-fourths",
+    "three fourth",
+    "three fourths"
+  ],
+  "1/3": [
+    "1/3",
+    "one-third",
+    "one-thirds",
+    "one third",
+    "one thirds"
+  ],
+  "2/3": [
+    "2/3",
+    "two-third",
+    "two-thirds",
+    "two third",
+    "two thirds"
+  ],
+  "1/2": [
+    "1/2",
+    "one-half",
+    "one-halves",
+    "one half",
+    "one halves"
   ],
   "1": [
     "1",
