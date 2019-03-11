@@ -27,7 +27,7 @@ from parse_url import *
 # load in module functions
 import health
 import vegetarian
-import italian
+import cuisine
 
 # python3 -c 'import main; main.run_interface()'
 
@@ -61,7 +61,7 @@ def run_interface(dir="empty",filename="test"):
 
 
     # parse url using parse_url.py
-    og_ingredients, og_directions, og_name = main_parse(url,check="single")
+    og_ingredients, og_directions = main_parse(url,check="single")
     unfiltered_ingredients = get_full_ingredients(url)
     simple_ingredients = [ i['name'] for i in og_ingredients]
 
@@ -102,13 +102,29 @@ def run_interface(dir="empty",filename="test"):
     with open("veg_kb.json", 'r') as f:
         veg_kb = json.loads(f.read())
 
-    with open("to_italian_kb.json", 'r') as i1:
-        italian_kb = json.loads(i1.read())
+    with open("cuisine_kb.json", 'r') as c:
+        cuisine_kb = json.loads(c.read())
 
-    with open("italian_freq.json", 'r') as i2:
-        italian_freq = json.loads(i2.read())
+    with open("cuisine_kbs/italian_kb.json", 'r') as italian:
+        italian_kb = json.loads(italian.read())
+        
+    with open("cuisine_kbs/chinese_kb.json", 'r') as chinese:
+        chinese_kb = json.loads(chinese.read())
+        
+    with open("cuisine_kbs/french_kb.json", 'r') as french:
+        french_kb = json.loads(french.read())
+        
+    with open("cuisine_kbs/indian_kb.json", 'r') as indian:
+        indian_kb = json.loads(indian.read())
+        
+    with open("cuisine_kbs/mexican_kb.json", 'r') as mexican:
+        mexican_kb = json.loads(mexican.read())
+        
+    with open("cuisine_kbs/southern_us_kb.json", 'r') as southern_us:
+        southern_us_kb = json.loads(southern_us.read())
+        
 
-    hella_recipes = pd.read_json("allrecipes-recipes.json",lines=True)
+#     hella_recipes = pd.read_json("allrecipes-recipes.json",lines=True)
 
 
 
@@ -136,8 +152,14 @@ def run_interface(dir="empty",filename="test"):
         print("Select 3 to make the recipe vegetarian.")
         print("Select 4 to make the recipe non-vegetarian.")
         print("Select 5 to make the recipe Italian.")
-
-        print("Select x to quit the program. ")
+        print("Select 6 to make the recipe Chinese.")
+        print("Select 7 to make the recipe French.")
+        print("Select 8 to make the recipe Indian.")
+        print("Select 9 to make the recipe Mexican.")
+        print("Select 10 to make the recipe Southern US.")
+        
+        print("Select X to quit the program. ")
+        
 
         # select next action
         next = input()
@@ -151,7 +173,7 @@ def run_interface(dir="empty",filename="test"):
         
         veg_ingredients_list = []
         for d in t_full_ingredients:
-            veg_ingredients_list.append(d['quantity'] + ' ' + d['measurement'] + ' ' + d['name'])
+            veg_ingredients_list.append(d['quantity'] + ' ' + d['measure'] + ' ' + d['name'])
         # call transform from imported files ------------------------------------------------------------------------
 
 
@@ -168,14 +190,32 @@ def run_interface(dir="empty",filename="test"):
         if next == "3":
             new_ingredients, new_directions = vegetarian.makeVegetarian(veg_ingredients_list,t_directions,veg_kb)
 
-        if next == "4":
-            new_ingredients, new_directions = vegetarian.undoVegetarian(og_name,veg_ingredients_list,t_directions,hella_recipes,veg_kb)
+#         if next == "4":
+#             new_ingredients, new_directions = vegetarian.undoVegetarian(og_name,veg_ingredients_list,t_directions,hella_recipes,veg_kb)
 
         if next == "5":
-            new_ingredients, og_simplified_ingredients = italian.cuisine_to_italian_ingredients(og_ingredients, italian_freq, italian_kb)
-            new_directions = italian.cuisine_to_italian_directions(og_simplified_ingredients, og_directions, new_ingredients)
+            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(og_ingredients, italian_kb, cuisine_kb)
+            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, og_directions, new_ingredients)
 
-
+        if next == "6":
+            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(og_ingredients, chinese_kb, cuisine_kb)
+            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, og_directions, new_ingredients)            
+        if next == "7":
+            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(og_ingredients, french_kb, cuisine_kb)
+            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, og_directions, new_ingredients)
+            
+        if next == "8":
+            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(og_ingredients, indian_kb, cuisine_kb)
+            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, og_directions, new_ingredients)
+            
+        if next == "9":
+            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(og_ingredients, mexican_kb, cuisine_kb)
+            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, og_directions, new_ingredients)
+            
+        if next == "10":
+            new_ingredients, og_simplified_ingredients = cuisine.to_cuisine_ingredients(og_ingredients, southern_us_kb, cuisine_kb)
+            new_directions = cuisine.to_cuisine_directions(og_simplified_ingredients, og_directions, new_ingredients)
+            
         elif next == "x":
             print("quiting the url currently being tested")
             _continue = False
@@ -241,11 +281,20 @@ def run_interface(dir="empty",filename="test"):
 def test_internal():
     # Allows us to test multiple different urls in a row without having to read them in or try multiple
 
+
+    url_veg = []
+    url_nonveg = []
+    url_healthy = ['https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669','https://www.allrecipes.com/recipe/65896'
+                    ]
+    url_unhealhy = []
+    url_italian = ['https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669','https://www.allrecipes.com/recipe/65896']
+
     url_veg = ['https://www.allrecipes.com/recipe/65896','https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669']
     url_nonveg = ['https://www.allrecipes.com/recipe/86297', 'https://www.allrecipes.com/recipe/232908', 'https://www.allrecipes.com/recipe/232908', 'https://www.allrecipes.com/recipe/60598','https://www.allrecipes.com/recipe/228241','https://www.allrecipes.com/recipe/73139']
     url_healthy = ['https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669','https://www.allrecipes.com/recipe/65896']
     url_unhealhy = ['https://www.allrecipes.com/recipe/72381','https://www.allrecipes.com/recipe/8665','https://www.allrecipes.com/recipe/216688', 'https://www.allrecipes.com/recipe/51997']
     url_italian = []
+
 
 
     # What do you want to test ?
