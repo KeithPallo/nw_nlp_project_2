@@ -47,7 +47,8 @@ Our Unhealthy and Healthy methods are fairly simple in that they categorize each
 
 
 ## Non-vegetarian to Vegetarian and vice versa
-write me
+In order to transform recipes to and from vegetarian, we began by finding the meat or faux-meat we wanted to replace. To do this, we used a knowledge base of recipes to find similar recipes based on the name of the input dish. We then processes those recipes to find ingredient replacements using a frequency distribution. Finally, for the directions, we replaced the old ingredient with the new transformed ingredient.
+
 
 ## Cuisines - Statistical Methods
 
