@@ -63,6 +63,7 @@ def parse(string):
 	q = {'quantity': (reg.group(1) or '').strip().lower()}
 	m = {'measurement': (reg.group(6) or '').strip()}
 	p = {'preparation': ''}
+	d = {'descriptor': ''}
 
 	# yet to do:
 	# if in name: if phrase in ingredients_list, return it, else return the whole name
@@ -187,8 +188,25 @@ def parse(string):
 		for each in splitN:
 			if each in measurement_list:
 				m = {'measurement': str(each)}
-	if q == {'quantity': ''}:
-		q = {'quantity': 'n/a'}
-	parsed = {**q, **n, **m, **p}
+
+	with open('descriptors_kb.json') as f:
+		descriptors = json.load(f)
+
+	descriptors_list = []
+	for each in descriptors:
+		descriptors_list.extend(descriptors[each])
+
+	t = word_tokenize(n['name'])
+	d_string = ''
+	for each in t:
+		if each in descriptors_list:
+			d_string += str(each) + ', '
+			d = {'descriptor': d_string}
+
+	if d['descriptor'] != '':
+		d['descriptor'] = d['descriptor'][0:-2]
+
+
+	parsed = {**q, **n, **m, **p, **d}
 
 	return parsed
