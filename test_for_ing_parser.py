@@ -5,69 +5,39 @@ from pprint import pprint
 # import nltk
 # from nltk import *
 
-
-print(parse('2 liters of milk'))
-print(parse('2 lbs milk'))
-print(parse('1 lbs milk'))
-print(parse('1 lb milk'))
-print(parse('1 pound milk'))
-print(parse('1 # milk'))
-print(parse('1 t milk.'))
-print(parse('1 T milk.'))
-print(parse('thirteen T milk'))
-print("")
-print(parse("1 bunch celery, cleaned and cut into 4 inch pieces"))
-print("")
-print(parse("4 teaspoons of Keith"))
-print("")
-print("")
-print(parse("2 (8 ounce) packaged cream cheese, softened"))
-print(parse("2 8 ounce packaged cream cheese, softened"))
-print(parse("1 1/2 cups shredded Cheddar cheese"))
-print(parse("1 cups shredded Cheddar cheese"))
-
-print(parse("1 pound skinless, boneless chicken breast halves - cubed"))
-# error
-print(parse("1 cup sliced carrotsprint"))
-print(parse("1 cup frozen green peas"))
-print(parse("1/2 cup sliced celery"))
-
-print(parse("1/3 cup butter"))
-print(parse("1/3 cup chopped onion"))
-print(parse("1/3 cup all-purpose flour"))
-print(parse("1/2 teaspoon salt"))
-print(parse("1/4 teaspoon black pepper"))
-print(parse("1/4 teaspoon celery seed"))
-print(parse("1 3/4 cups chicken broth"))
-print(parse("2/3 cup milk"))
-print(parse("2 (9 inch) unbaked pie crusts"))
-print(parse("2 9 inch unbaked pie crusts"))
-print(parse(".9 inch unbaked pie crusts"))
-print(parse("0.9 inch unbaked pie crusts"))
-
-print(parse("6 frozen skinless, boneless chicken breast halves"))
-print(parse("1 gal. of peanuts"))
-print(parse("salt and ground black pepper to taste"))
-print(parse("1 (10.75 ounce) can condensed Cheddar cheese soup"))
-print(parse("1 10.75 ounce can condensed Cheddar cheese soup"))
-print(parse("1/2 cup butter"))
-print(parse("200 cans of condensed Cheddar cheese soup"))
-
-print(parse("2 gallons of peanuts"))
-print(parse("2 1/2 gallons of peanuts"))
-print(parse("2 5 gallons of peanuts"))
-print(parse("2 (9 inch) unbaked pie crusts"))
-print(parse("6 slices ham"))
-print(parse('2 liters of fried milk'))
-print(parse('2 liters of deep fried milk'))
+print(parse("1 pinch paprika, or as desired (optional)"))
+print(parse("1 (10.75 ounce) can condensed Cheddar cheese soup (such as Campbell's®)"))
+print(parse("2 cups whole milk"))
+print(parse("2 eggs, well beaten"))
+print(parse("1 (16 ounce) package shredded Cheddar cheese, divided"))
+print(parse("juice the strawberries"))
+# print(parse(""))
+# print(parse(""))
+# print(parse(""))
+# print(parse(""))
+# print(parse(""))
+# print(parse(""))
+# print(parse(""))
+# print(parse(""))
+# print(parse(""))
+# print(parse(""))
+# print(parse(""))
+# print(parse(""))
+# print(parse(""))
+# print(parse(""))
+# print(parse(""))
+# print(parse(""))
+# print(parse(""))
+# print(parse(""))
 
 
 
-# s1 = 'unbaked'
-# s2 = 'separated'
-# s3 = 'separate'
-# s4 = 'rolled'
-# s5 = 'soaked'
+
+# s1 = 'finely'
+# s2 = 'fresh'
+# s3 = 'extra-virgin'
+# s4 = 'tasty'
+# s5 = 'broken'
 # s6 = 'sweat'
 # s7 = 'sweated'
 # s8 = 'toasted'
@@ -116,12 +86,11 @@ print(parse('2 liters of deep fried milk'))
 # 		  s25, s26, s27, s28, s29, s30, s31, s32, s33,
 # 		  s34, s35, s36, s37, s38, s39, s40))
 #
-# # for each in s0:
-# print(s40)
-# t = word_tokenize(s40)
-# x = nltk.pos_tag(t)
-# # print(t)
-# # print(x)
-# for each in x:
-# 	if 'VB' in each[1]:
-# 		print(each[0])
+# for each in s0:
+# 	t = word_tokenize(each)
+# 	x = nltk.pos_tag(t)
+# 	# print(t)
+# 	print(x)
+# 	# for each in x:
+# 	# 	if 'RB' in each[1]:
+# 	# 		print(each[0])

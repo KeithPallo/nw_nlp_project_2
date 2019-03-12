@@ -1,31 +1,10 @@
-import re
-# Lets use a regular expression to match a few date strings.
-regex = r"[a-zA-Z]+ \d+"
-matches = re.findall(regex, "June 24, August 9, Dec 12")
-for match in matches:
-    # This will print:
-    #   June 24
-    #   August 9
-    #   Dec 12
-    print("Full match: %s" % (match))
+import json
 
-# To capture the specific months of each date we can use the following pattern
-regex = r"([a-zA-Z]+) \d+"
-matches = re.findall(regex, "June 24, August 9, Dec 12")
-for match in matches:
-    # This will now print:
-    #   June
-    #   August
-    #   Dec
-    print("Match month: %s" % (match))
+with open('descriptors_kb.json') as f:
+	descriptors = json.load(f)
 
-# If we need the exact positions of each match
-regex = r"([a-zA-Z]+) \d+"
-matches = re.finditer(regex, "June 24, August 9, Dec 12")
-for match in matches:
-    # This will now print:
-    #   0 7
-    #   9 17
-    #   19 25
-    # which corresponds with the start and end of each match in the input string
-    print("Match at index: %s, %s" % (match.start(), match.end()))
+descriptors_list = []
+for each in descriptors:
+	descriptors_list.extend(descriptors[each])
+
+print(descriptors_list.lower())

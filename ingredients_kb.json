@@ -78,6 +78,7 @@
   ],
   "poultry": [
     "chicken",
+    "chicken breasts",
     "bologna",
     "bratwursts",
     "chickens",
@@ -321,7 +322,8 @@
     "shiitake"
   ],
   "sugars": [
-    "Jell-O\u00ae",
+    "Jell-O",
+    "jello",
     "butterscotch",
     "candied",
     "candy",
@@ -364,7 +366,7 @@
     "twinkies",
     "colaciones",
     "sherbet",
-    "hershey\u00ae's",
+    "hershey's",
     "candies",
     "confectioners'",
     "fudge",
@@ -722,7 +724,7 @@
     "beverage",
     "cider",
     "coffee",
-    "dew\u2122",
+    "dew",
     "drink",
     "eggnog",
     "epazote",
@@ -754,7 +756,7 @@
     "flour",
     "margarine",
     "yeast",
-    "bisquick\u00ae"
+    "bisquick"
   ],
   "cookingFats": [
     "butter",

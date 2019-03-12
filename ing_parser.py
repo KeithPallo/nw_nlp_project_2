@@ -15,6 +15,9 @@ with open('measurements_kb.json') as f:
 with open('preparations_kb.json') as f:
 	preparations = json.load(f)
 
+with open('descriptors_kb.json') as f:
+	descriptors = json.load(f)
+
 # ingredients_list = []
 # for each in ingredients:
 # 	ingredients_list.extend(ingredients[each])
@@ -30,6 +33,10 @@ for each in measurements:
 preparations_list = []
 for each in preparations:
 	preparations_list.extend(preparations[each])
+
+descriptors_list = []
+for each in descriptors:
+	descriptors_list.extend(descriptors[each])
 
 ingredient_string = re.compile(
 	# Groups may have changed, but originally were:
@@ -63,6 +70,7 @@ def parse(string):
 	q = {'quantity': (reg.group(1) or '').strip().lower()}
 	m = {'measurement': (reg.group(6) or '').strip()}
 	p = {'preparation': ''}
+	d = {'descriptor': ''}
 
 	# yet to do:
 	# if in name: if phrase in ingredients_list, return it, else return the whole name
@@ -72,12 +80,12 @@ def parse(string):
 	# create bigrams from name
 	splitNcopy = reg.group(9).split()
 	spliteach = []
+	bgrams = []
 	for each in splitNcopy:
 		each = each.replace(',', '')
 		each = each.replace('(', '')
 		each = each.replace(')', '')
 		spliteach.append(each)
-		bgrams = []
 		bgrams += list(nltk.bigrams(spliteach))
 
 	# looks for parentheses in name
@@ -90,7 +98,6 @@ def parse(string):
 				remove_mes_from_name = reg.group(9).replace(mesPar[0], '')
 				remove_mes_from_name = remove_mes_from_name.replace('  ', ' ')
 				n = {'name': (remove_mes_from_name or '').strip().lower()}
-
 				m = {'measurement': (split2[0] + ' ' + split2[-1] or '').strip()}
 
 	# substitute preparation methods out of name
@@ -173,16 +180,43 @@ def parse(string):
 	if p['preparation'] == '':
 		p['preparation'] = 'n/a'
 
-	if 'to' in n['name']:
-		n['name'] = n['name'].replace('to', '').strip()
+	if "to" in n['name']:
+		split_name = word_tokenize(n['name'])
+		split_name = ["" if x == "to" else x for x in split_name]
+		n['name'] = " ".join(split_name)
+
+	if n['name'] == '':
+		n['name'] = reg.group(9).strip().lower()
 
 	if m == {'measurement': ''} or 'None' in m['measurement'] and r'\d' not in m['measurement']:
 		splitN = reg.group(9).split()
 		for each in splitN:
 			if each in measurement_list:
 				m = {'measurement': str(each)}
+
 	if q == {'quantity': ''}:
 		q = {'quantity': 'n/a'}
-	parsed = {**q, **n, **m, **p}
+
+	# descriptors
+	t = word_tokenize(n['name'])
+	d_string = ''
+	for each in t:
+		if each in descriptors_list:
+			d_string += str(each) + ', '
+			d = {'descriptor': d_string}
+	if d['descriptor'] != '':
+		# td = word_tokenize(d_string)
+		# for each in td:
+		# 	if each in n['name']:
+		# 		n['name'] = n['name'].replace(each, '').strip()
+		d['descriptor'] = d['descriptor'][0:-2]
+
+	if d['descriptor'] == '':
+		d['descriptor'] = 'n/a'
+
+	if m == {'measurement': ''}:
+		m = {'measurement': 'n/a'}
+
+	parsed = {**d, **p, **m, **q, **n}
 
 	return parsed
