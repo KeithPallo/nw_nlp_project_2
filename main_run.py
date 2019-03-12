@@ -293,7 +293,7 @@ def test_internal():
     url_nonveg = ['https://www.allrecipes.com/recipe/86297', 'https://www.allrecipes.com/recipe/232908', 'https://www.allrecipes.com/recipe/232908', 'https://www.allrecipes.com/recipe/60598','https://www.allrecipes.com/recipe/228241','https://www.allrecipes.com/recipe/73139']
     url_healthy = ['https://www.allrecipes.com/recipe/257865','https://www.allrecipes.com/recipe/23600','https://www.allrecipes.com/recipe/8669','https://www.allrecipes.com/recipe/65896']
     url_unhealhy = ['https://www.allrecipes.com/recipe/72381','https://www.allrecipes.com/recipe/8665','https://www.allrecipes.com/recipe/216688', 'https://www.allrecipes.com/recipe/51997']
-
+    
 
 
     # What do you want to test ?
@@ -373,6 +373,6 @@ def printPretty(old_stuff_dicts, ingredients,unfiltered):
 
 
 if __name__ == "__main__":
-    test_internal()
+    #  test_internal() - This can be used for testing multiple links
 
-    # run_interface()
+    run_interface()
